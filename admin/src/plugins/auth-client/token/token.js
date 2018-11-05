@@ -15,7 +15,8 @@ export default {
     axios.post(Config.authUrl + '/oauth/token', {
       grant_type: 'authorization_code',
       code: code,
-      client: Config.appId,
+      client_id: Config.appId,
+      client_secret:Config.appSecret,
       redirect_uri: Config.baseUrl
     }, {
       transformRequest: [function (data) {
