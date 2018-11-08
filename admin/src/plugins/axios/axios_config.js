@@ -15,10 +15,16 @@ export default{
 		
 		Vue.use(VueAxios, axios)
 		
+		Vue.axios.defaults.baseURL="http://localhost:9080/finance/";
+		
 		//让ajax携带cookie
 	 	Vue.axios.defaults.withCredentials=true;
+	 	//跨域
+	 	Vue.axios.defaults.crossDomain = true;
 	    // 配置认证头
-	    Vue.axios.defaults.headers.common['Authorization'] = 'Bearer ' + Vue.prototype.$auth.token()
+	    Vue.axios.defaults.headers.common['Authorization'] = 'Bearer ' + Vue.prototype.$auth.token();
+	    
+	    
 	    // http 拦截器
 	    Vue.axios.interceptors.response.use(function (response) {
 	      // Do something with response data

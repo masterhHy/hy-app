@@ -90,6 +90,11 @@ export default {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
+  },
+  created(){
+  	this.axios.post("/investor/aa",{}).then(res=>{
+  		console.log(res);
+  	})
   }
 }
 </script>

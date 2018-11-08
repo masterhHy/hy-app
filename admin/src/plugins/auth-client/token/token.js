@@ -86,8 +86,6 @@ export default {
       console.error('access_token_time not find.')
       return true
     }
-    console.log(tokenExpiresTime);
-		console.log(moment.unix(tokenExpiresTime).format('YYYY年MM月DD日 HH:mm:ss'));
     if (moment().unix() > tokenExpiresTime) {
     	
       return true
