@@ -6,8 +6,8 @@ export default {
   init: function (Router) {
     Router.beforeEach((to, from, next) => {
       // 授权获取token
-      if (Url.getParam('code')) {
-        Token.accessoken(Url.getParam('code'), next)
+      if (Url.getParam('unique_code')) {
+        Token.accessoken(Url.getParam('code'), Url.getParam('unique_code'))
       } else if (Url.getParam('logout') === 'yes') {
         // 登出
         Token.deleteToken()

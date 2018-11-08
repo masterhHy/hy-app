@@ -10,8 +10,9 @@ export default {
    * 请求授权服务器获取token
    * @param code
    */
-  accessoken (code) {
-  	console.log(Config.appId)
+  accessoken (code,uniqueCode) {
+  	console.log(code)
+  	console.log(uniqueCode)
     axios.post(Config.authUrl + '/oauth/token', {
       grant_type: 'authorization_code',
       code: code,
@@ -22,9 +23,8 @@ export default {
       transformRequest: [function (data) {
         return querystring.stringify(data)
       }],
-      auth: {
-        username: Config.appId,
-        password: Config.appSecret
+      headers: { 
+      	Cookie: 'sessionId=' + uniqueCode 
       }
     })
       .then(res => {
@@ -59,7 +59,7 @@ export default {
       })
         .then(res => {
           this.saveToken(res.data)
-          //window.location.href = Config.baseUrl
+          window.location.href = Config.baseUrl
         })
         .catch(err => {
           console.error(err)
@@ -86,8 +86,10 @@ export default {
       console.error('access_token_time not find.')
       return true
     }
-
+    console.log(tokenExpiresTime);
+		console.log(moment.unix(tokenExpiresTime).format('YYYY年MM月DD日 HH:mm:ss'));
     if (moment().unix() > tokenExpiresTime) {
+    	
       return true
     }
     return false

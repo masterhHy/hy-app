@@ -13,10 +13,10 @@ export default{
 			return ret
 		}]
 		
-		
 		Vue.use(VueAxios, axios)
 		
-	
+		//让ajax携带cookie
+	 	Vue.axios.defaults.withCredentials=true;
 	    // 配置认证头
 	    Vue.axios.defaults.headers.common['Authorization'] = 'Bearer ' + Vue.prototype.$auth.token()
 	    // http 拦截器
