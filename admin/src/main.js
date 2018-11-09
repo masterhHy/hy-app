@@ -7,6 +7,7 @@ import Auth from './plugins/auth-client'
 import axios from './plugins/axios/axios_config.js'
 import store from './vuex'
 import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css';
 
 
 require("./common/common.css")
