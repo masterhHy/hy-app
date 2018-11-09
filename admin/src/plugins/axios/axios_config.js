@@ -1,6 +1,6 @@
 import axios from 'axios'
 import VueAxios from 'vue-axios'
- 
+import Token from '../auth-client/token/token'
 
 export default{
 	init(Vue){
@@ -37,6 +37,7 @@ export default{
 	            break
 	          case 402:
 	            Vue.prototype.$notify.error('没登录')
+	            Token.deleteToken();
 	            break
 	          default:
 	            Vue.prototype.$notify.error('访问服务器错误')
