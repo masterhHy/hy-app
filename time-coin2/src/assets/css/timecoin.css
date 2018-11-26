@@ -1,0 +1,126 @@
+.coin-all {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.coins-img {
+  width: 60px;
+}
+
+.flex-coin {
+  margin: 5px 0;
+  position: relative;
+  border: 1px solid #4E4B41;
+  background-color: #615D4F;
+  height: 90px;
+}
+
+.coins-img {
+  width: 70px;
+  position: absolute;
+  left: 50%;
+  margin-left: -35px;
+  top: 50%;
+  margin-top: -35px;
+}
+
+.blue {
+  color: blue;
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
+
+.coin-type {
+  letter-spacing: 10px;
+}
+
+input[type=radio] + label::before {
+  content: "\a0"; /*不换行空格*/
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 18px;
+  width: 1em;
+  height: 1em;
+  margin-right: 1em;
+  border-radius: 50%;
+  border: 1px solid gray;
+  text-indent: .15em;
+  line-height: 1;
+  box-sizing: border-box;
+}
+
+input[type=radio]:checked + label::before {
+  background-color: gray;
+  background-clip: content-box;
+  padding: .1em;
+}
+
+input[type=radio] {
+  position: absolute;
+  clip: rect(0px 0px 0px 0px);
+}
+
+.line {
+  height: 30px;
+  line-height: 30px;
+}
+
+.line:first-child::before {
+  border: 1px solid blue;
+}
+
+.bg-blue {
+  background-color: lightblue;
+}
+
+.bg-green {
+  background-color: lightgreen;
+}
+
+.bg-red {
+  background-color: pink;
+}
+
+.content-coin {
+  height: 90px;
+  line-height: 22.5px;
+ /* overflow: hidden;*/
+  padding-left: 5px;
+}
+/*.content-coin::before {
+  float: left;
+  width: 5px;
+  content: '';
+  height: 90px;
+}
+
+
+.content-coin .text {
+  float: right;
+  width: 100%;
+  word-break: break-all;
+  margin-left: -5px;
+}
+
+.content-coin::after {
+  float: right;
+  content: '...';
+  height: 20px;
+  line-height: 20px;
+  width: 2em;
+  margin-left: -2em;
+  position: relative;
+  left: 103%;
+  top: -23px;
+  padding-right: 1px;
+  background-color: green;
+}*/

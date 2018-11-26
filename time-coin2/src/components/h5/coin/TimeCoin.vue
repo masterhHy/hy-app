@@ -1,30 +1,22 @@
 <template>
   <div class="coin-all">
-    <!-- <grid :show-lr-borders="false" :show-vertical-dividers="false" v-for="i in 6" :key="i">
-       <grid-item  v-for="i in 4" :key="i" label="金币">
-         <img slot="icon" src="@/components/h5/coin/assets/images/gold-coin.png" class="coin-img">
-       </grid-item>
-     </grid>-->
-
-    <flexbox v-for="j in 6" :key="j">
-      <flexbox-item v-for="i in 4" :key="i">
-        <div class="flex-coin" @click="toTimeCoinEdit(j,i)"><img class="coins-img"
-                                                                 src="@/components/h5/coin/assets/images/gold-coin.png">
+    <flexbox v-for="row in 6" :key="row">
+      <flexbox-item v-for="col in 4" :key="col">
+        <div v-if="contents[(row-1)*4+(col-1)]" @click="toTimeCoinEdit(row,col,true)"
+             :class="[contents[(row-1)*4+(col-1)].type=='2'?'bg-green':'',contents[(row-1)*4+(col-1)].type=='1'?'bg-blue':'',contents[(row-1)*4+(col-1)].type=='3'?'bg-red':'','content-coin']">
+          <span class="text">{{contents[(row-1)*4+(col-1)].content.length>24?(contents[(row-1)*4+(col-1)].content.substring(0,23)+"..."):contents[(row-1)*4+(col-1)].content}}</span>
+        </div>
+        <div class="flex-coin" @click="toTimeCoinEdit(row,col,false)" v-if="!contents[(row-1)*4+(col-1)]">
+          <img class="coins-img" src="@/components/h5/coin/assets/images/gold-coin.png">
         </div>
       </flexbox-item>
     </flexbox>
 
     <div v-transfer-dom>
-      <confirm v-model="show"
-               title="请选择金币类型"
-               @on-cancel="onCancel"
-               @on-confirm="onConfirm"
-               @on-show="onShow"
-               @on-hide="onHide"
-               closeOnConfirm="false">
-        <label class="coin-type blue"><input type="radio"  name="type" value="工作" />工作</label>
-        <label class="coin-type green"> <input type="radio" name="type" value="学习"/>学习</label>
-        <label class="coin-type red"><input type="radio" name="type" value="娱乐"/>娱乐</label>
+      <confirm v-model="show" title="请选择金币类型" @on-cancel="onCancel" @on-confirm="onConfirm">
+        <div class="line"><input type="radio" name="type" value="1" id="work" checked v-model="coinType"/><label for="work" class="blue coin-type">工作</label></div>
+        <div class="line"><input type="radio" name="type" value="2" id="study" v-model="coinType"/><label for="study" class="green coin-type">学习</label></div>
+        <div class="line"><input type="radio" name="type" value="3" id="play" v-model="coinType"/><label for="play" class="red coin-type">娱乐</label></div>
       </confirm>
     </div>
 
@@ -52,7 +44,10 @@
     data() {
       return {
         show: false,
-        coinType: ''
+        coinType: "1",
+        col: 1,
+        row: 1,
+        contents: []
       }
     },
     components: {
@@ -65,85 +60,34 @@
       Confirm
     },
     methods: {
-      toTimeCoinEdit(col, row) {
+      toTimeCoinEdit(row, col, isWrite) {
+        if (isWrite) {
+          let coinContent = this.contents[(row-1)*4+(col-1)].content
+          this.coinType = this.contents[(row-1)*4+(col-1)].type
+          this.$router.push({name: 'timeCoinEdit',params:{coinType:this.coinType,coinContent:coinContent}})
+          return
+        }
         this.show = true;
-        /*this.$router.push('/TimeCoinEdit');*/
-      },
-      doShowToast() {
-        this.$vux.toast.show({
-          text: 'toast'
-        })
+
       },
       onCancel() {
         console.log('on cancel')
       },
       onConfirm(msg) {
-        console.log('on confirm')
-        if (msg) {
-          alert(msg)
-        }
-      },
-      onHide() {
-        console.log('on hide')
-      },
-      onShow() {
-        console.log('on show')
-      },
+        console.log(this.coinType)
+        this.$router.push({name: 'timeCoinEdit',params:{coinType:this.coinType}})
+
+      }
+    },
+    mounted () {
+      this.contents = [{type:'2',content:'我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢'}
+                      ,{type:'1',content:'我再工作呢我再工作呢我再工作呢我再工作呢我再工作呢我再工作呢我再工作呢我再工作呢'}
+                      ,{type:'3',content:'我在玩呢我在玩呢我在玩呢我在玩呢我在玩呢我在玩呢我在玩呢我在玩呢我在玩呢'}
+        ]
     }
   }
 </script>
 
 <style scoped>
-  .coin-all {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    overflow: hidden;
-    padding: 10px;
-  }
-
-  .coins-img {
-    width: 60px;
-  }
-  .coin-type-font{
-    letter-spacing: 12px;
-  }
-
-
-  .flex-coin {
-    margin: 5px 0;
-    position: relative;
-    border: 1px solid #4E4B41;
-    background-color: #615D4F;
-    height: 90px;
-  }
-  .blue{
-    color:blue;
-  }
-  .green{
-    color:green;
-  }
-  .red{
-    color: red;
-  }
-
-  .coins-img {
-    width: 70px;
-    position: absolute;
-    left: 50%;
-    margin-left: -35px;
-    top: 50%;
-    margin-top: -35px;
-  }
-  .coin-type{
-    display: block;
-    margin:10px;
-    width: 150px;
-    letter-spacing: 12px;
-    padding-left: 60px;
-  }
-  .coin-type input{
-    margin-right: 20px;
-  }
-
+  @import "../../../assets/css/timecoin.css";
 </style>

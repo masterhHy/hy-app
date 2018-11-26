@@ -10,22 +10,22 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HomePage',
+      name: 'homePage',
       component: HomePage
     },
     {
-      path: '/HomePage',
-      name: 'HomePage',
+      path: '/homePage',
+      name: 'homePage',
       component: HomePage
     },
     {
-      path: '/TimeCoin',
-      name: 'TimeCoin',
+      path: '/timeCoin',
+      name: 'timeCoin',
       component: TimeCoin
     },
     {
-      path: '/TimeCoin/TimeCoinEdit',
-      name: 'TimeCoinEdit',
+      path: '/timeCoin/timeCoinEdit',
+      name: 'timeCoinEdit',
       component: TimeCoinEdit
     }
   ]

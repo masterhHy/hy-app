@@ -24,7 +24,6 @@
     },
     methods:{
       toTimeCoin() {
-        console.log(this.$router)
         this.$router.push('/TimeCoin');
        /* this.router.push('/TimeCoin');*/
       }
