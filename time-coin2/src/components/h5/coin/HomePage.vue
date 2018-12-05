@@ -22,6 +22,10 @@
         }
       }
     },
+    create(){
+    	console.log(1);
+    	console.log(this);
+    },
     methods:{
       toTimeCoin() {
         this.$router.push('/TimeCoin');
