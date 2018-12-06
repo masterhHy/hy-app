@@ -5,7 +5,8 @@ import FastClick from 'fastclick'
 import VueRouter from 'vue-router'
 import App from './App'
 import router from './router'
-import axios from './plugins__config/axios_config.js'
+import Auth from './plugins__config/auth-client'
+import axios from './plugins__config/axios/axios_config.js'
 import {AlertPlugin, ToastPlugin} from 'vux'
 import './styles/index.less'
 
@@ -13,7 +14,9 @@ Vue.use(AlertPlugin)
 Vue.use(ToastPlugin)
 
 Vue.use(VueRouter)
-axios.init(Vue);
+//Vue.use(Auth, router)
+//axios.init(Vue);
+
 require("./common/common.css")
 FastClick.attach(document.body)
 
