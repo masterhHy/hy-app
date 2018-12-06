@@ -69,10 +69,6 @@
           return
         }
         this.show = true;
-				this.axios.post("coin/getCoinData").then(res=>{
-					console.log(res);
-				});
-				console.log(this.$route.params);
       },
       onCancel() {
         console.log('on cancel')
