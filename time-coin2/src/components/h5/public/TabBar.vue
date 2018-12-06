@@ -11,10 +11,13 @@
         <img slot="icon-active" src="../../../assets/logo.png">
         <span slot="label">2</span>
       </tabbar-item>
-      <tabbar-item>
-        <img slot="icon" src="../../../assets/images/icons8-user-24.png">
-        <img slot="icon-active" src="../../../assets/logo.png">
-        <span slot="label">3</span>
+      <tabbar-item  link="/User">
+        <i  slot="icon" class="fa fa-user" aria-hidden="true"></i>
+        <i slot="icon-active" class="fa fa-user"></i>
+
+      <!--  <i  slot="icon" class="fa fa-id-card-o" aria-hidden="true"></i>
+        <i slot="icon-active" class="fa fa-id-card-o"></i>-->
+        <span slot="label">我的</span>
       </tabbar-item>
     </tabbar>
   </div>

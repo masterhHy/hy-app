@@ -8,6 +8,7 @@ import router from './router'
 import Auth from './plugins__config/auth-client'
 
 import {AlertPlugin, ToastPlugin} from 'vux'
+import './styles/index.less'
 
 Vue.use(AlertPlugin)
 Vue.use(ToastPlugin)

@@ -37,6 +37,9 @@
 </script>
 
 <style scoped>
+  .page {
+    background-color: #363636;
+  }
   @keyframes shine {
     0% {
       background-color: transparent;

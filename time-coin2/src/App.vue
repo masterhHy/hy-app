@@ -18,7 +18,7 @@
   @import '~vux/src/styles/reset.less';
 
   #app {
-    background-color: #363636;
+    /*background-color: #363636;*/
     height: 100%;
   }
 </style>
