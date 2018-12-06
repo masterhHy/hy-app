@@ -12,10 +12,19 @@ export default {
 		        // 登出
 		        Token.deleteToken();
 		      } else {
-		      	var tarUrl=window.localStorage.getItem("targetPage");
-		        if(tarUrl){
+		      	let item=window.localStorage.getItem("targetPage");
+		        if(item){
+		        	item = JSON.parse(item);
 		        	window.localStorage.removeItem("targetPage");
-		        	next(tarUrl);
+		        	let tarUrl = item.tar;
+		        	let params = item.params;
+		        	let type = item.type;
+		        	if(type==0){//显示传参
+		        		next({path:tarUrl,query:params});
+		        	}else if(type==1){
+		        		next({name:tarUrl,params:params});
+		        	}
+		        	
 		        }
 		        // 判断是否登陆
 		        if (Token.isLogin()) {

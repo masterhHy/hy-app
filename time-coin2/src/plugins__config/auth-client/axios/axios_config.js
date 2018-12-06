@@ -2,6 +2,7 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import Token from '../token/token'
 import Config from '../utils/config'
+import _this from '@/main.js'
 
 export default{
 	init(Vue){
@@ -36,11 +37,28 @@ export default{
 	          case 403:
 	            break
 	          case 402:
-	          	var targetPage = window.location.href.replace(Config.baseUrl,"").replace("#","");
-	            window.localStorage.setItem("targetPage",targetPage);
+	          	let item={};
+	          	
+	            if(_this){
+	            	let params = _this.$route.params;
+	            	if(JSON.stringify(params)!="{}"){
+	            		//通过params传参
+	            		item.type=1;
+	            		item.params=params;
+	            		item.tar=_this.$route.name;
+	            	}else{
+	            		item.tar=_this.$route.path;
+	            		item.params=_this.$route.query;
+	            		item.type=0;
+	            	}
+	            	
+	            	window.localStorage.setItem("targetPage",JSON.stringify(item));
+	            	window.location.href = Config.authUrl + '/oauth/authorize?response_type=code&client_id=' + Config.appId + '&redirect_uri=' +
+                	Config.baseUrl
+	            }else{
+	            	console.error("请在main.js 把vue实例输出，以免后续跳转登录参后回不到原来页面")
+	            }
 	            
-	            window.location.href = Config.authUrl + '/oauth/authorize?response_type=code&client_id=' + Config.appId + '&redirect_uri=' +
-                Config.baseUrl
 	            break
 	          default:
 	            //Vue.prototype.$notify.error('访问服务器错误')

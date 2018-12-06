@@ -22,13 +22,11 @@
         }
       }
     },
-    create(){
-    	console.log(1);
-    	console.log(this);
-    },
     methods:{
       toTimeCoin() {
-        this.$router.push('/TimeCoin');
+      	this.$router.push({name:"timeCoin",params:{test:555}});
+      	//this.$router.push({path:"/timeCoin",query:{test:555}});
+        //this.$router.push('/TimeCoin');
        /* this.router.push('/TimeCoin');*/
       }
     }
