@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="edit-all">
     <div class="edit-head">
       <span :class="[work?'bg-blue':'',study?'bg-green':'',play?'bg-red':'','type','left']" @click="_toTimeCoin">{{coinType.label}}</span>
       <span class="type right bg-gray" v-if="mode===1" @click="mode=2">保存</span>
@@ -51,6 +51,10 @@
 </script>
 
 <style scoped>
+  .edit-all {
+    background-color: #363636;
+    height: 100%;
+  }
   .edit-head {
     margin:0 auto;
     width: 95%;

@@ -7,6 +7,7 @@ import App from './App'
 import router from './router'
 import axios from './plugins__config/axios_config.js'
 import {AlertPlugin, ToastPlugin} from 'vux'
+import './styles/index.less'
 
 Vue.use(AlertPlugin)
 Vue.use(ToastPlugin)

@@ -4,10 +4,11 @@
       <flexbox-item v-for="col in 4" :key="col">
         <div v-if="contents[(row-1)*4+(col-1)]" @click="toTimeCoinEdit(row,col,true)"
              :class="[contents[(row-1)*4+(col-1)].type=='2'?'bg-green':'',contents[(row-1)*4+(col-1)].type=='1'?'bg-blue':'',contents[(row-1)*4+(col-1)].type=='3'?'bg-red':'','content-coin']">
-          <span class="text">{{contents[(row-1)*4+(col-1)].content.length>24?(contents[(row-1)*4+(col-1)].content.substring(0,23)+"..."):contents[(row-1)*4+(col-1)].content}}</span>
+          <span class="text">{{(row-1)*4+(col-1)}}--{{contents[(row-1)*4+(col-1)].content.length>24?(contents[(row-1)*4+(col-1)].content.substring(0,23)+"..."):contents[(row-1)*4+(col-1)].content}}</span>
         </div>
         <div class="flex-coin" @click="toTimeCoinEdit(row,col,false)" v-if="!contents[(row-1)*4+(col-1)]">
-          <img class="coins-img" src="@/components/h5/coin/assets/images/gold-coin.png">
+          <!--<img class="coins-img" src="@/components/h5/coin/assets/images/gold-coin.png">-->
+          {{(row-1)*4+(col-1)}}--with no content
         </div>
       </flexbox-item>
     </flexbox>
@@ -80,10 +81,16 @@
       }
     },
     mounted () {
-      this.contents = [{type:'2',content:'我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢'}
+
+      //查询某一日的
+      if(this.$route.params.content) {
+        this.contents = this.$route.params.content
+        console.log(this.contents[2])
+      }
+     /* this.contents = [{type:'2',content:'我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢'}
                       ,{type:'1',content:'我再工作呢我再工作呢我再工作呢我再工作呢我再工作呢我再工作呢我再工作呢我再工作呢'}
                       ,{type:'3',content:'我在玩呢我在玩呢我在玩呢我在玩呢我在玩呢我在玩呢我在玩呢我在玩呢我在玩呢'}
-        ]
+        ]*/
     }
   }
 </script>
