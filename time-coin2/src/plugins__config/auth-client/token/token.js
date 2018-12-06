@@ -11,8 +11,6 @@ export default {
    * @param code
    */
   accessoken (code,uniqueCode) {
-  	console.log(code)
-  	console.log(uniqueCode)
     axios.post(Config.authUrl + '/oauth/token', {
       grant_type: 'authorization_code',
       code: code,
@@ -28,8 +26,9 @@ export default {
       }
     })
       .then(res => {
-        this.saveToken(res.data)
-        window.location.href = Config.baseUrl
+        this.saveToken(res.data);
+        window.location.href=Config.baseUrl;
+        
       })
       .catch(err => {
         console.error(err)
@@ -59,7 +58,7 @@ export default {
       })
         .then(res => {
           this.saveToken(res.data)
-          window.location.href = Config.baseUrl
+          window.location.href=Config.baseUrl;
         })
         .catch(err => {
           console.error(err)

@@ -6,15 +6,14 @@ import VueRouter from 'vue-router'
 import App from './App'
 import router from './router'
 import Auth from './plugins__config/auth-client'
-import axios from './plugins__config/axios/axios_config.js'
+
 import {AlertPlugin, ToastPlugin} from 'vux'
 
 Vue.use(AlertPlugin)
 Vue.use(ToastPlugin)
 
 Vue.use(VueRouter)
-//Vue.use(Auth, router)
-//axios.init(Vue);
+Vue.use(Auth, router)
 
 require("./common/common.css")
 FastClick.attach(document.body)
