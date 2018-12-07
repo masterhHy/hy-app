@@ -6,7 +6,7 @@ import VueRouter from 'vue-router'
 import App from './App'
 import router from './router'
 import Auth from './plugins__config/auth-client'
-import axios from './plugins__config/axios/axios_config.js'
+
 import {AlertPlugin, ToastPlugin} from 'vux'
 import './styles/index.less'
 
@@ -14,8 +14,7 @@ Vue.use(AlertPlugin)
 Vue.use(ToastPlugin)
 
 Vue.use(VueRouter)
-//Vue.use(Auth, router)
-//axios.init(Vue);
+Vue.use(Auth, router)
 
 require("./common/common.css")
 FastClick.attach(document.body)
@@ -24,7 +23,9 @@ FastClick.attach(document.body)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
-new Vue({
+let that = new Vue({
   router,
   render: h => h(App)
 }).$mount('#app-box')
+//把vue实例输出，方便其他模块应用
+export default that
