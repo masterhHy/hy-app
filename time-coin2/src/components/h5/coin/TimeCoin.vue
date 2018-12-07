@@ -85,7 +85,6 @@
       //查询某一日的
       if(this.$route.params.content) {
         this.contents = this.$route.params.content
-        console.log(this.contents[2])
       }
      /* this.contents = [{type:'2',content:'我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢'}
                       ,{type:'1',content:'我再工作呢我再工作呢我再工作呢我再工作呢我再工作呢我再工作呢我再工作呢我再工作呢'}
