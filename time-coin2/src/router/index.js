@@ -6,6 +6,8 @@ import TimeCoinEdit from '@/components/h5/coin/TimeCoinEdit'
 import User from '@/components/h5/user/User'
 import MyDiary from '@/components/h5/user/MyDiary'
 import MyWeekReport from '@/components/h5/user/MyWeekReport'
+import DayDiary from '@/components/h5/user/DayDiary'
+import WishList from '@/components/h5/wishlist/WishList'
 
 Vue.use(Router)
 
@@ -45,6 +47,16 @@ export default new Router({
       path: '/myWeekReport',
       name: 'myWeekReport',
       component: MyWeekReport
+    },
+    {
+      path: '/dayDiary',
+      name: 'dayDiary',
+      component: DayDiary
+    },
+    {
+      path: '/wishList',
+      name: 'wishList',
+      component: WishList
     }
   ]
 })
