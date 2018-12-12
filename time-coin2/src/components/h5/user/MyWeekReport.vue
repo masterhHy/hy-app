@@ -9,10 +9,18 @@
     </div>
     <p>
       您{{month}}月第{{week}}周({{formatUtil.dateFormatUtil(startDay)}}-{{formatUtil.dateFormatUtil(endDay)}})的学习时间为{{time.study}}h，工作时间为{{time.work}}h，娱乐时间为{{time.play}}h。</p>
-    <!-- <div id="main2" class="main"></div>-->
+    <div id="main2" class="main"></div>
     <p>不同类型时间占比如下。</p>
     <div id="main" class="main"></div>
-
+    <p v-if="maxType == 1" >
+      您本周工作的时间最长，工作了{{this.time.work}}h，还是要注意劳逸结合哦~同时不要忘了给自己充电哦！
+    </p>
+    <p v-if="maxType == 2" >
+      您本周学习的时间最长，学习了{{this.time.study}}h，这一周又学到了不少东西吧，下一周也要继续努力哦！
+    </p>
+    <p v-if="maxType == 3" >
+      您本周娱乐的时间最长，娱乐了{{this.time.play}}h，这一周是不是又懈怠了呢？加油一把，未来的你会感谢现在的你哦！
+    </p>
   </div>
 </template>
 
@@ -32,11 +40,12 @@
           work: 36,
           play: 98
         },
+        maxType: 0,
         formatUtil: formatUtil
       }
     },
     methods: {
-      getEcharts() {
+      _getEcharts() {
         // 引入 ECharts 主模块
         const echarts = require('echarts/lib/echarts');
         // 引入柱状图
@@ -51,7 +60,7 @@
 
         // 基于准备好的dom，初始化echarts实例
         const myChart = echarts.init(document.querySelector('#main'));
-        /*const myChart2 = echarts.init(document.querySelector('#main2'));*/
+        const myChart2 = echarts.init(document.querySelector('#main2'));
         // 绘制图表
         myChart.setOption({
           /*title: {
@@ -112,60 +121,10 @@
                 name: '娱乐'
               }
             ]
-          }]
+          }],
+          color:['#3FAA3F','#4545BB','#BF4B4B']
         });
-        /*myChart.setOption({
-          tooltip: {
-            trigger: 'item',
-            formatter: "{a} <br/>{b}: {c} ({d}%)"
-          },
-          legend: {
-            orient: 'horizontal',
-            left: 'left',
-            data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
-          },
-          series: [
-            {
-              name:'访问来源',
-              type:'pie',
-              avoidLabelOverlap: false,
-              label: {
-                normal: {
-                  show: true,
-                  position: 'inside',
-                  formatter:'{d}%',
-                  textStyle:{
-                    fontSize:'10',
-                    baseline:'center',
-                    fontWeight:'bold',
-                    fontFamily:'微软雅黑',
-                    align:'center'
-                  }
-                },
-                emphasis: {
-                    show: true,
-                    textStyle: {
-                        fontSize: '12',
-                        fontWeight: 'bolder'
-                    }
-                }
-              },
-              labelLine: {
-                normal: {
-                  show: false
-                }
-              },
-              data:[
-                {value:335, name:'直接访问'},
-                {value:310, name:'邮件营销'},
-                {value:234, name:'联盟广告'},
-                {value:135, name:'视频广告'},
-                {value:1548, name:'搜索引擎'}
-              ]
-            }
-          ]
-        });*/
-        /* myChart2.setOption({
+         myChart2.setOption({
            title: {
              text: '一周时间分类',
              left: 'center'
@@ -174,16 +133,40 @@
            xAxis: {
              data: ['学习', '工作', '娱乐']
            },
-           yAxis: {},
+           yAxis: {
+             interval: 10
+           },
            series: [{
              type: 'bar',
+             itemStyle: {
+               normal: {
+                 color: function(params) {
+                   let colorList = ['#3FAA3F','#4545BB','#BF4B4B']
+                   return colorList[params.dataIndex]
+                 },
+                 lable: {
+                   show: true,
+                   position:'top',
+                   formatter:'{b}\n{c}',
+
+                 }
+               }
+             },
+             barWidth: 45,
              data: [20, 36, 98]
            }]
-         });*/
+         });
+      },
+      _getMaxType () {
+        let maxTime = Math.max(this.time.study,this.time.work,this.time.play)
+        if(maxTime === this.time.work) this.maxType = 1
+        else if(maxTime === this.time.study) this.maxType = 2
+        else this.maxType = 3
       }
     },
     mounted() {
-      this.getEcharts()
+      this._getEcharts()
+      this._getMaxType ()
     }
   }
 </script>

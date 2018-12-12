@@ -51,7 +51,10 @@ export default new Router({
     {
       path: '/dayDiary',
       name: 'dayDiary',
-      component: DayDiary
+      component: DayDiary,
+      meta: {
+        tabModule: 'my'
+      }
     },
     {
       path: '/wishList',

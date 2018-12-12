@@ -7,13 +7,13 @@
     <div>
       <group>
         <cell title="我的日记" is-link class="cell" link="/myDiary">
-          <i slot="icon" class="fa fa-id-card-o icon-position pink" aria-hidden="true"></i>
+          <i slot="icon" class="fas fa-book-open icon-position pink" aria-hidden="true"></i>
         </cell>
         <cell title="我的周报告" is-link class="cell"  link="/myWeekReport">
-          <i slot="icon" class="fa fa-window-restore icon-position light-blue" aria-hidden="true"></i>
+          <i slot="icon" class="fas fa-retweet icon-position light-blue" aria-hidden="true"></i>
         </cell>
         <cell title="我的月报告" is-link class="cell mg-bottom10">
-          <i slot="icon" class="fa fa-calendar-times-o icon-position light-green" aria-hidden="true"></i>
+          <i slot="icon" class="far fa-calendar-alt icon-position light-green" aria-hidden="true"></i>
         </cell>
       </group>
     </div>

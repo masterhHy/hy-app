@@ -9,6 +9,7 @@ import Auth from './plugins__config/auth-client'
 
 import {AlertPlugin, ToastPlugin} from 'vux'
 import './styles/index.less'
+import '_@fortawesome_fontawesome-free@5.6.0@@fortawesome/fontawesome-free/css/fontawesome.css'
 
 Vue.use(AlertPlugin)
 Vue.use(ToastPlugin)
