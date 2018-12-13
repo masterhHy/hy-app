@@ -11,10 +11,10 @@ export default {
     Vue.prototype.$auth = {
       config: Config,
       token () {
-        return Token.token()
+        return Token.token();
       },
       logout () {
-        Token.deleteToken()
+        Token.deleteToken();
       }
     }
     axios.init(Vue);
