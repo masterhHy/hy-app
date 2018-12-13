@@ -1,10 +1,10 @@
 .coin-all {
   background-color: #363636;
-  padding: 0;
   margin: 0;
   box-sizing: border-box;
   overflow: hidden;
   padding: 10px;
+  padding-bottom: 53px;
 }
 
 .coins-img {

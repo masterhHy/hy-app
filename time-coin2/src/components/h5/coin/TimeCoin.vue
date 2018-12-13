@@ -1,14 +1,13 @@
 <template>
   <div class="coin-all">
-    <flexbox v-for="row in 6" :key="row">
+    <flexbox v-for="row in 8" :key="row">
       <flexbox-item v-for="col in 4" :key="col">
         <div v-if="contents[(row-1)*4+(col-1)]" @click="toTimeCoinEdit(row,col,true)"
              :class="[contents[(row-1)*4+(col-1)].type=='2'?'bg-green':'',contents[(row-1)*4+(col-1)].type=='1'?'bg-blue':'',contents[(row-1)*4+(col-1)].type=='3'?'bg-red':'','content-coin']">
           <span class="text">{{(row-1)*4+(col-1)}}--{{contents[(row-1)*4+(col-1)].content.length>24?(contents[(row-1)*4+(col-1)].content.substring(0,23)+"..."):contents[(row-1)*4+(col-1)].content}}</span>
         </div>
         <div class="flex-coin" @click="toTimeCoinEdit(row,col,false)" v-if="!contents[(row-1)*4+(col-1)]">
-          <!--<img class="coins-img" src="@/components/h5/coin/assets/images/gold-coin.png">-->
-          {{(row-1)*4+(col-1)}}--with no content
+          <img class="coins-img" src="@/components/h5/coin/assets/images/gold-coin.png">
         </div>
       </flexbox-item>
     </flexbox>
