@@ -68,6 +68,7 @@
           return
         }
         this.show = true;
+         
       },
       onCancel() {
         console.log('on cancel')

@@ -92,9 +92,9 @@ export default {
     }
   },
   created(){
-  	this.axios.post("/investor/aa",{}).then(res=>{
-  		console.log(res);
-  	})
+  	this.axios.post("/coin/aa").then(res=>{
+        	console.log(res);
+        })
   }
 }
 </script>

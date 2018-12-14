@@ -11,25 +11,23 @@ export default {
    * @param code
    */
   accessoken (code,uniqueCode) {
-  	console.log(code)
-  	console.log(uniqueCode)
+  	console.log( btoa(Config.appId + ":" + Config.appSecret));
     axios.post(Config.authUrl + '/oauth/token', {
       grant_type: 'authorization_code',
       code: code,
-      client_id: Config.appId,
-      client_secret:Config.appSecret,
       redirect_uri: Config.baseUrl
     }, {
       transformRequest: [function (data) {
         return querystring.stringify(data)
       }],
       headers: { 
-      	Cookie: 'sessionId=' + uniqueCode 
+      	Authorization: "Basic " + btoa(Config.appId + ":" + Config.appSecret)
       }
     })
       .then(res => {
-        this.saveToken(res.data)
-        window.location.href = Config.baseUrl
+        this.saveToken(res.data);
+        window.location.href=Config.baseUrl;
+        
       })
       .catch(err => {
         console.error(err)
@@ -59,7 +57,7 @@ export default {
       })
         .then(res => {
           this.saveToken(res.data)
-          window.location.href = Config.baseUrl
+          window.location.href=Config.baseUrl;
         })
         .catch(err => {
           console.error(err)
