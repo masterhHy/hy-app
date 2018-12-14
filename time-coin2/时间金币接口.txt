@@ -1,0 +1,13 @@
+查询当天金币
+/coin/getTodayCoinData 
+参数 无
+返回数据  
+{"code":200,"message":"操作成功","data":[{"id":"1","type":1,"content":null}]}
+
+新增或修改金币内容
+/coin/addOrUpdate
+参数 {remark:"今天内容",type:1,id:"dd"} 
+type: 1 工作 2 学习 3 娱乐 
+id 若为null或"" 则新增
+返回数据
+{"code":200,"message":"操作成功","data":null}
