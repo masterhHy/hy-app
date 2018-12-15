@@ -1,13 +1,13 @@
-²éÑ¯µ±Ìì½ğ±Ò
+æŸ¥è¯¢å½“å¤©é‡‘å¸
 /coin/getTodayCoinData 
-²ÎÊı ÎŞ
-·µ»ØÊı¾İ  
-{"code":200,"message":"²Ù×÷³É¹¦","data":[{"id":"1","type":1,"content":null}]}
+å‚æ•° æ— 
+è¿”å›æ•°æ®  
+{"code":200,status:true,"message":"æ“ä½œæˆåŠŸ","data":[{"id":"1","type":1,"content":null}]}
 
-ĞÂÔö»òĞŞ¸Ä½ğ±ÒÄÚÈİ
+æ–°å¢æˆ–ä¿®æ”¹é‡‘å¸å†…å®¹
 /coin/addOrUpdate
-²ÎÊı {remark:"½ñÌìÄÚÈİ",type:1,id:"dd"} 
-type: 1 ¹¤×÷ 2 Ñ§Ï° 3 ÓéÀÖ 
-id ÈôÎªnull»ò"" ÔòĞÂÔö
-·µ»ØÊı¾İ
-{"code":200,"message":"²Ù×÷³É¹¦","data":null}
+å‚æ•° {remark:"ä»Šå¤©å†…å®¹",type:1,id:"dd"} 
+type: 1 å·¥ä½œ 2 å­¦ä¹  3 å¨±ä¹ 
+id è‹¥ä¸ºnullæˆ–"" åˆ™æ–°å¢
+è¿”å›æ•°æ®
+{"code":200,status:true,"message":"æ“ä½œæˆåŠŸ","data":null}

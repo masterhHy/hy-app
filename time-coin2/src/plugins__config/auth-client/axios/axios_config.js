@@ -53,8 +53,7 @@ export default{
 	            	}
 	            	
 	            	window.localStorage.setItem("targetPage",JSON.stringify(item));
-	            	window.location.href = Config.authUrl + '/oauth/authorize?response_type=code&client_id=' + Config.appId + '&redirect_uri=' +
-                	Config.baseUrl
+	            	window.location.href = Config.authUrl + '/oauth/authorize?response_type=code&client_id=' + Config.appId + '&redirect_uri=' +Config.baseUrl
 	            }else{
 	            	console.error("请在main.js 把vue实例输出，以免后续跳转登录参后回不到原来页面")
 	            }
