@@ -30,7 +30,7 @@ export default{
 	    // http 拦截器
 	    Vue.axios.interceptors.response.use(function (response) {
 	      // Do something with response data
-	      return response
+	      return response.data
 	    }, function (error) {
 	      if (error && error.response) {
 	        switch (error.response.status) {
