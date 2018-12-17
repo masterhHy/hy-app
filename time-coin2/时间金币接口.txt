@@ -1,6 +1,6 @@
 查询当天金币
 /coin/getTodayCoinData 
-参数 无
+参数 {day:"2018-10-10"}
 返回数据  
 {"code":200,status:true,"message":"操作成功","data":[{"id":"1","type":1,"content":null}]}
 
