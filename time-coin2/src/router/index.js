@@ -9,6 +9,7 @@ import MyWeekReport from '@/components/h5/user/MyWeekReport'
 import DayDiary from '@/components/h5/user/DayDiary'
 import WishList from '@/components/h5/wishlist/WishList'
 import AddWish from '@/components/h5/wishlist/AddWish'
+import SingleWish from '@/components/h5/wishlist/SingleWish'
 
 Vue.use(Router)
 
@@ -66,6 +67,11 @@ export default new Router({
       path: '/addWish',
       name: 'addWish',
       component: AddWish
+    },
+    {
+      path: '/singleWish',
+      name: 'singleWish',
+      component: SingleWish
     }
   ]
 })
