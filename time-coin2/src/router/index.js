@@ -8,6 +8,7 @@ import MyDiary from '@/components/h5/user/MyDiary'
 import MyWeekReport from '@/components/h5/user/MyWeekReport'
 import DayDiary from '@/components/h5/user/DayDiary'
 import WishList from '@/components/h5/wishlist/WishList'
+import AddWish from '@/components/h5/wishlist/AddWish'
 
 Vue.use(Router)
 
@@ -60,6 +61,11 @@ export default new Router({
       path: '/wishList',
       name: 'wishList',
       component: WishList
+    },
+    {
+      path: '/addWish',
+      name: 'addWish',
+      component: AddWish
     }
   ]
 })

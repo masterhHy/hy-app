@@ -1,12 +1,11 @@
 <template>
   <div class="edit-all">
     <div class="edit-head">
-      <span :class="[work?'bg-blue':'',study?'bg-green':'',play?'bg-red':'','type','left']" @click="_toTimeCoin">{{coinType.label}}</span>
-      <span class="type right bg-gray" v-if="mode===1" @click="mode=2">保存</span>
-      <span class="type right bg-gray" v-if="mode===2" @click="mode=1">编辑</span>
+      <span :class="[work?'bg-blue':'',study?'bg-green':'',play?'bg-red':'','type','left']">{{coinType.label}}</span>
+      <span class="type right bg-gray" @click="_toTimeCoin">保存</span>
     </div>
     <div class="edit-content">
-      <textarea class="text" placeholder="快来填写你的时间金币吧~":readonly="mode===2" v-model="coinContent"></textarea>
+      <textarea class="text" placeholder="快来填写你的时间金币吧~" v-model="coinContent"></textarea>
     </div>
   </div>
 </template>
@@ -16,32 +15,40 @@
       name: "TimeCoinEdit",
       data () {
         return {
+          id:'',
           coinType: {},
           coinContent: '',
           study: false,
           work: false,
           play: false,
-          mode:1 //模式：1保存2编辑
         }
       },
       methods: {
         _toTimeCoin () {
-          this.$router.push({name:'timeCoin'})
+          let param = {remark:this.coinContent,type:this.coinType.value,id:this.id}
+          this.axios({
+            url:'/coin/addOrUpdate',
+            method:'get',
+            params:param
+          }).then((res)=>{
+            this.$router.push({name:'timeCoin'})
+          }).catch(()=>{})
         }
       },
       mounted () {
         const coinType = this.$route.params.coinType
         this.coinContent = this.$route.params.coinContent
+        this.id = this.$route.params.id
         switch(coinType) {
-          case "1":
+          case 1:
             this.coinType = {label:'工作', value:1}
             this.work = true
             break
-          case "2":
+          case 2:
             this.coinType = {label:'学习', value:2}
             this.study = true
             break
-          case "3":
+          case 3:
             this.coinType = {label:'娱乐', value:3}
             this.play = true
             break

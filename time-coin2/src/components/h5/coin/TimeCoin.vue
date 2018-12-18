@@ -4,7 +4,7 @@
       <flexbox-item v-for="col in 4" :key="col">
         <div v-if="contents[(row-1)*4+(col-1)]" @click="toTimeCoinEdit(row,col,true)"
              :class="[contents[(row-1)*4+(col-1)].type=='2'?'bg-green':'',contents[(row-1)*4+(col-1)].type=='1'?'bg-blue':'',contents[(row-1)*4+(col-1)].type=='3'?'bg-red':'','content-coin']">
-          <span class="text">{{(row-1)*4+(col-1)}}--{{contents[(row-1)*4+(col-1)].content.length>24?(contents[(row-1)*4+(col-1)].content.substring(0,23)+"..."):contents[(row-1)*4+(col-1)].content}}</span>
+          <span class="text">{{contents[(row-1)*4+(col-1)].content.length>24?(contents[(row-1)*4+(col-1)].content.substring(0,23)+"..."):contents[(row-1)*4+(col-1)].content}}</span>
         </div>
         <div class="flex-coin" @click="toTimeCoinEdit(row,col,false)" v-if="!contents[(row-1)*4+(col-1)]">
           <img class="coins-img" src="@/components/h5/coin/assets/images/gold-coin.png">
@@ -14,9 +14,14 @@
 
     <div v-transfer-dom>
       <confirm v-model="show" title="请选择金币类型" @on-cancel="onCancel" @on-confirm="onConfirm">
-        <div class="line"><input type="radio" name="type" value="1" id="work" checked v-model="coinType"/><label for="work" class="blue coin-type">工作</label></div>
-        <div class="line"><input type="radio" name="type" value="2" id="study" v-model="coinType"/><label for="study" class="green coin-type">学习</label></div>
-        <div class="line"><input type="radio" name="type" value="3" id="play" v-model="coinType"/><label for="play" class="red coin-type">娱乐</label></div>
+        <div class="line"><input type="radio" name="type" value="1" id="work" checked v-model="coinType"/><label
+          for="work" class="blue coin-type">工作</label></div>
+        <div class="line"><input type="radio" name="type" value="2" id="study" v-model="coinType"/><label for="study"
+                                                                                                          class="green coin-type">学习</label>
+        </div>
+        <div class="line"><input type="radio" name="type" value="3" id="play" v-model="coinType"/><label for="play"
+                                                                                                         class="red coin-type">娱乐</label>
+        </div>
       </confirm>
     </div>
 
@@ -44,7 +49,7 @@
     data() {
       return {
         show: false,
-        coinType: "1",
+        coinType: '1',
         col: 1,
         row: 1,
         contents: []
@@ -62,33 +67,42 @@
     methods: {
       toTimeCoinEdit(row, col, isWrite) {
         if (isWrite) {
-          let coinContent = this.contents[(row-1)*4+(col-1)].content
-          this.coinType = this.contents[(row-1)*4+(col-1)].type
-          this.$router.push({name: 'timeCoinEdit',params:{coinType:this.coinType,coinContent:coinContent}})
+          let coinContent = this.contents[(row - 1) * 4 + (col - 1)].content
+          this.coinType = this.contents[(row - 1) * 4 + (col - 1)].type
+          let id = this.contents[(row - 1) * 4 + (col - 1)].id
+          this.$router.push({name: 'timeCoinEdit', params: {id: id, coinType: this.coinType, coinContent: coinContent}})
           return
         }
         this.show = true;
-         
+
       },
       onCancel() {
         console.log('on cancel')
       },
       onConfirm(msg) {
-        console.log(this.coinType)
-        this.$router.push({name: 'timeCoinEdit',params:{coinType:this.coinType}})
+        this.$router.push({name: 'timeCoinEdit', params: {coinType: this.coinType}})
 
       }
     },
-    mounted () {
+    mounted() {
 
       //查询某一日的
-      if(this.$route.params.content) {
+      if (this.$route.params.content) {
         this.contents = this.$route.params.content
+      } else {
+        this.axios({
+          url:'/coin/getTodayCoinData',
+          method:'get',
+          params:{}
+        }).then((res)=>{
+          console.log(res.data.data)
+          this.contents = res.data.data
+        }).catch(()=>{})
       }
-     /* this.contents = [{type:'2',content:'我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢'}
-                      ,{type:'1',content:'我再工作呢我再工作呢我再工作呢我再工作呢我再工作呢我再工作呢我再工作呢我再工作呢'}
-                      ,{type:'3',content:'我在玩呢我在玩呢我在玩呢我在玩呢我在玩呢我在玩呢我在玩呢我在玩呢我在玩呢'}
-        ]*/
+      /* this.contents = [{type:'2',content:'我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢'}
+                       ,{type:'1',content:'我再工作呢我再工作呢我再工作呢我再工作呢我再工作呢我再工作呢我再工作呢我再工作呢'}
+                       ,{type:'3',content:'我在玩呢我在玩呢我在玩呢我在玩呢我在玩呢我在玩呢我在玩呢我在玩呢我在玩呢'}
+         ]*/
     }
   }
 </script>

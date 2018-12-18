@@ -6,10 +6,12 @@ import VueRouter from 'vue-router'
 import App from './App'
 import router from './router'
 import Auth from './plugins__config/auth-client'
-
 import {AlertPlugin, ToastPlugin} from 'vux'
 import './styles/index.less'
-//import '_@fortawesome_fontawesome-free@5.6.0@@fortawesome/fontawesome-free/css/fontawesome.css'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+
+Vue.use(VueAxios,axios)
 
 Vue.use(AlertPlugin)
 Vue.use(ToastPlugin)
