@@ -11,7 +11,6 @@ export default {
    * @param code
    */
   accessoken (code,uniqueCode) {
-  	console.log( btoa(Config.appId + ":" + Config.appSecret));
     axios.post(Config.authUrl + '/oauth/token', {
       grant_type: 'authorization_code',
       code: code,
@@ -25,7 +24,7 @@ export default {
       }
     })
       .then(res => {
-        this.saveToken(res.data);
+        this.saveToken(res);
         window.location.href=Config.baseUrl;
         
       })
@@ -56,7 +55,7 @@ export default {
         }
       })
         .then(res => {
-          this.saveToken(res.data)
+          this.saveToken(res)
           window.location.href=Config.baseUrl;
         })
         .catch(err => {
