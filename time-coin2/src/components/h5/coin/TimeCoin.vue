@@ -95,8 +95,7 @@
           method:'get',
           params:{}
         }).then((res)=>{
-          console.log(res.data.data)
-          this.contents = res.data.data
+          this.contents = res.data
         }).catch(()=>{})
       }
       /* this.contents = [{type:'2',content:'我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢'}
