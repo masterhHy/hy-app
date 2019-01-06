@@ -16,23 +16,33 @@
           <i slot="icon" class="far fa-calendar-alt icon-position light-green" aria-hidden="true"></i>
         </cell>
       </group>
+      
     </div>
+    <div style="position: absolute; bottom: 100px;width: 100%;padding: 0px 40px;">
+      	<x-button type="primary" @click.native="logout">退出</x-button>
+      </div>
   </div>
 </template>
 
 <script>
-  import {Cell, Group} from 'vux'
+  import {Cell, Group,XButton} from 'vux'
 
   export default {
     name: 'User',
     components: {
       Group,
-      Cell
+      Cell,
+      XButton
     },
     data() {
       return {
         userName: '泉眼无声'
       }
+    },
+    methods:{
+    	logout(){
+    		this.$auth.logout();
+    	}
     }
   }
 </script>
