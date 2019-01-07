@@ -35,6 +35,7 @@ export default{
 	      if (error && error.response) {
 	        switch (error.response.status) {
 	          case 403:
+	          	alert("权限不足");
 	            break
 	          case 402:
 	          	let item={};
