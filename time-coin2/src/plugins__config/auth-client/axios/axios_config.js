@@ -61,6 +61,7 @@ export default{
 	            
 	            break
 	          default:
+	          	alert("服务器出毛病了");
 	            //Vue.prototype.$notify.error('访问服务器错误')
 	        }
 	      } else {

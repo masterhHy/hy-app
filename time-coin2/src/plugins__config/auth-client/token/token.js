@@ -105,6 +105,6 @@ export default {
     localStorage.setItem(Constant.refresh_token, data.refresh_token)
     localStorage.setItem(Constant.expires_in, data.expires_in)
     localStorage.setItem(Constant.token_expires_time, moment().add(data.expires_in, 's').unix())
-    localStorage.setItem(Constant.user_info, JSON.stringify(data.user_info))
+    localStorage.setItem(Constant.user_info, data.user_info)
   }
 }
