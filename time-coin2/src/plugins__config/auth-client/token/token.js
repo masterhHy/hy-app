@@ -98,7 +98,7 @@ export default {
     localStorage.removeItem(Constant.expires_in)
     localStorage.removeItem(Constant.token_expires_time)
     localStorage.removeItem(Constant.user_info)
-    window.location.href = Config.authUrl + '/logout'
+    window.location.href = Config.authUrl + '/backReferer?referer='+Config.baseUrl
   },
   saveToken (data) {
     localStorage.setItem(Constant.access_token, data.access_token)
