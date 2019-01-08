@@ -318,7 +318,8 @@ textarea{overflow:auto; }
 .app-theme-fillcolor{
 	fill: #3383ff;
 }
-* {
+/*禁用移动端页面复制文字*/
+body {
     -webkit-touch-callout:none;  /*系统默认菜单被禁用*/
 	  -webkit-user-select:none; /*webkit浏览器*/
 	  -khtml-user-select:none; /*早期浏览器*/
