@@ -17,6 +17,7 @@ Vue.use(VueRouter)
 Vue.use(Auth, router)
 
 require("./common/common.css")
+require("./assets/css/fa5013/web-fonts-with-css/css/fontawesome-all.css")
 FastClick.attach(document.body)
 
 
