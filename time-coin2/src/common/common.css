@@ -325,5 +325,8 @@ textarea{overflow:auto; }
 	  -moz-user-select:none; /*火狐*/
 	  -ms-user-select:none;  /*IE10*/
 	  user-select:none;
-
+	  margin: 0;
+  	padding: 0;
+  	box-sizing: border-box;
+  	font-family: 微软雅黑;
  }
