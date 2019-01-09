@@ -5,7 +5,7 @@ export const Ch =
     USER_MANAGED: '用户管理',
     ROLE_MANAGED: '角色管理',
     SYSTEM_MANAGED: '系统管理',
-    MODULE_MANAGED: '模块管理',
+    MODULE_MANAGED: '权限管理',
     HOME_PAGE: '首页',
     SYSTEM_VISUL: '系统监控',
     ADMIN_MONITOR: '服务监控',

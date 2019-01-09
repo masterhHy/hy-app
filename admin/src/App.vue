@@ -24,7 +24,9 @@
 		        <el-col :span="2" style="text-align: center"></el-col>
 		        <el-col :span="6" class="main-dropdown">
 		          <el-tooltip class="item" effect="dark" content="全屏切换" placement="bottom">
-		            <img src="./assets/img/full-screen.png" class="main-avatar" style="margin-right: 20px" @click="fullScreen"/>
+		          	
+		            <img v-if="isFullSreen" src="./assets/img/cancel-full-screen.png" class="main-avatar" style="margin-right: 20px" @click="fullScreen"/>
+		            <img v-if="!isFullSreen" src="./assets/img/full-screen.png" class="main-avatar" style="margin-right: 20px" @click="fullScreen"/>
 		          </el-tooltip>
 		          <el-dropdown @command="handleTranslate" style="margin-right: 30px">
 		            <span class="el-dropdown-link">
@@ -38,7 +40,7 @@
 		          <img src="./assets/img/account.png" class="main-avatar circel" />
 		          <el-dropdown @command="handleCommand">
 		            <span class="el-dropdown-link">
-		              {{userInfo.userName}}<i class="el-icon-arrow-down el-icon--right"></i>
+		              {{userInfo.firstName}}<i class="el-icon-arrow-down el-icon--right"></i>
 		            </span>
 		            <el-dropdown-menu slot="dropdown">
 		              <el-dropdown-item command="modify">{{$t('message.MODIFY_PASSWORD')}}</el-dropdown-item>
@@ -138,7 +140,12 @@ export default {
     }
   },
   created () {
-    this.$store.commit("menuInfo",{})
+    this.$store.commit("menuInfo",{});
+    //获取权限
+    
+    //获取用户信息
+    var ui = window.localStorage.getItem("USER_INFO");
+    this.$store.commit("userInfo",{userInfo:JSON.parse(ui)||{}});
   },
   methods: {
     clickMenu (menu, parent) {
@@ -238,16 +245,15 @@ export default {
       this.isCollapse = !this.isCollapse
     },
     fullScreen () {
-    	if(this.isFullSreen){
-    		this.isFullSreen=false;
-    	}
       if (document.fullscreenElement ||
           document.msFullscreenElement ||
           document.mozFullScreenElement ||
           document.webkitFullscreenElement || false) {
-        this.exitFullscreen()
+        this.exitFullscreen();
+        this.isFullSreen=false;
       } else {
         this.requestFullScreen()
+        this.isFullSreen=true;
       }
     },
     // 进入全屏

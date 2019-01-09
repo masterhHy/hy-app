@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
-import HelloWorld from '@/components/HelloWorld'
+import Welcom from '@/pages/Welcom'
 import store from '../vuex/index.js'
 
 Vue.use(Router)
@@ -11,20 +11,20 @@ Vue.use(Router)
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'index',
+      component: Welcom
     },{
       path: '/test1',
       name: 'HelloWorld',
-      component: HelloWorld
+      component: Welcom
     },{
       path: '/test2',
       name: 'HelloWorld',
-      component: HelloWorld
+      component: Welcom
     },{
       path: '/test3',
       name: 'HelloWorld',
-      component: HelloWorld
+      component: Welcom
     }
   ]
 })

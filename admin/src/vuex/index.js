@@ -21,24 +21,6 @@ export default new Vuex.Store({
     },
     menuInfo (state,{ menuInfo }) {
     	menuInfo=[{ 
-								id:"1",
-								moduleName:"用户模块",
-								modulePath:"/test1",
-								parentId:"",
-								active:1,  
-								moduleCode:"USER_MANAGED",
-								moduleIcon:"",
-								subModules:[]
-							},{ 
-								id:"2",
-								moduleName:"角色模块",
-								modulePath:"/test2",
-								parentId:"",
-								active:1, 
-								moduleCode:"ROLE_MANAGED",
-								moduleIcon:"",
-								subModules:[]
-							},{ 
 								id:"3",
 								moduleName:"test模块",
 								modulePath:"",
@@ -47,12 +29,39 @@ export default new Vuex.Store({
 								moduleCode:"SYSTEM_MANAGED",
 								moduleIcon:"",
 								subModules:[{ 
-									id:"4",
-									moduleName:"test2模块",
+										id:"4",
+										moduleName:"test2模块",
+										modulePath:"/test3",
+										parentId:"3",
+										active:1, 
+										moduleCode:"MODULE_MANAGED",
+										moduleIcon:"",
+										subModules:[]
+									},{ 
+									id:"1",
+									moduleName:"用户模块",
+									modulePath:"/test1",
+									parentId:"3",
+									active:1,  
+									moduleCode:"USER_MANAGED",
+									moduleIcon:"",
+									subModules:[]
+								},{ 
+									id:"2",
+									moduleName:"角色模块",
+									modulePath:"/test2",
+									parentId:"3",
+									active:1, 
+									moduleCode:"ROLE_MANAGED",
+									moduleIcon:"",
+									subModules:[]
+								},{ 
+									id:"5",
+									moduleName:"应用模块",
 									modulePath:"/test3",
 									parentId:"3",
 									active:1, 
-									moduleCode:"MODULE_MANAGED",
+									moduleCode:"APP_MANAGED",
 									moduleIcon:"",
 									subModules:[]
 								}]

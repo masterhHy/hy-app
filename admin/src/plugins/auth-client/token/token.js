@@ -4,6 +4,8 @@ import Config from '../utils/config'
 import Constant from '../utils/constant'
 import moment from 'moment'
 
+import _this from '@/main.js'
+
 export default {
 
   /**
@@ -32,7 +34,6 @@ export default {
         console.error(err)
       })
   },
-
   /**
    * 请求授权服务器刷新token
    */
