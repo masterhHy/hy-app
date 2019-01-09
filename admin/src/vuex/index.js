@@ -9,24 +9,67 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     pageLoading:false,
-    pageTitle:"",
+    userInfo:{},
+    menuInfo:[],
   },
   mutations: {
     pageLoading (state,{ isLoading }) {
-      // 变更状态
       state.pageLoading=isLoading;
     },
-    pageTitle(state,{ pageTitle }) {
-      // 变更状态
-      state.pageTitle=pageTitle;
+    userInfo (state,{ userInfo }) {
+      state.userInfo=userInfo;
+    },
+    menuInfo (state,{ menuInfo }) {
+    	menuInfo=[{ 
+								id:"1",
+								moduleName:"用户模块",
+								modulePath:"/test1",
+								parentId:"",
+								active:1,  
+								moduleCode:"USER_MANAGED",
+								moduleIcon:"",
+								subModules:[]
+							},{ 
+								id:"2",
+								moduleName:"角色模块",
+								modulePath:"/test2",
+								parentId:"",
+								active:1, 
+								moduleCode:"ROLE_MANAGED",
+								moduleIcon:"",
+								subModules:[]
+							},{ 
+								id:"3",
+								moduleName:"test模块",
+								modulePath:"",
+								parentId:"",
+								active:1, 
+								moduleCode:"SYSTEM_MANAGED",
+								moduleIcon:"",
+								subModules:[{ 
+									id:"4",
+									moduleName:"test2模块",
+									modulePath:"/test3",
+									parentId:"3",
+									active:1, 
+									moduleCode:"MODULE_MANAGED",
+									moduleIcon:"",
+									subModules:[]
+								}]
+							}]
+    	
+      state.menuInfo=menuInfo;
     },
   },
   getters: {
-    pageLoading: state => {
+  	pageLoading: state => {
       return state.pageLoading;
     },
-    pageTitle: state => {
-      return state.pageTitle;
+    userInfo: state => {
+      return state.userInfo;
     },
-  }
+    menuInfo: state => {
+      return state.menuInfo;
+    },
+  },
 })

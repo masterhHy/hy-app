@@ -4,13 +4,18 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Auth from './plugins/auth-client'
+import i18n from './plugins/i18n'
 import store from './vuex'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css';
+import '@/assets/fonts/iconfont.css'
+
 
 
 require("./common/common.css")
-Vue.use(ElementUI)
+Vue.use(ElementUI,{
+  i18n: (key, value) => i18n.t(key, value)
+})
 Vue.use(Auth, router)
 Vue.config.productionTip = false
 
@@ -19,6 +24,7 @@ let that = new Vue({
   el: '#app',
   router,
   store,
+  i18n,
   components: { App },
   template: '<App/>'
 })
