@@ -52,9 +52,12 @@ export default{
 	            		item.params=_this.$route.query;
 	            		item.type=0;
 	            	}
-	            	
-	            	window.localStorage.setItem("targetPage",JSON.stringify(item));
-	            	window.location.href = Config.authUrl + '/oauth/authorize?response_type=code&client_id=' + Config.appId + '&redirect_uri=' +Config.baseUrl
+	            	//对换code时候是发送ajax 会引起原来触发登陆的ajax再次发送再次引起登陆bug
+	            	//加这个防止bug
+	            	if(!window.localStorage.getItem("targetPage")){
+	            		window.localStorage.setItem("targetPage",JSON.stringify(item));
+	            		window.location.href = Config.authUrl + '/oauth/authorize?response_type=code&client_id=' + Config.appId + '&redirect_uri=' +Config.baseUrl
+	            	}
 	            }else{
 	            	console.error("请在main.js 把vue实例输出，以免后续跳转登录参后回不到原来页面")
 	            }
