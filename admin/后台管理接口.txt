@@ -1,0 +1,20 @@
+获取用户菜单
+/user/getMenu
+参数 无
+返回数据  
+{
+"code":200,
+status:true,
+"message":"操作成功",
+"data":[{ 
+		id:"3",
+		moduleName:"test模块",
+		modulePath:"",
+		parentId:"",
+		active:1, 
+		moduleCode:"SYSTEM_MANAGED",
+		moduleIcon:"",
+		subModules:[]
+	}]
+}
+

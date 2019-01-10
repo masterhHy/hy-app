@@ -2,9 +2,11 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
-import Welcom from '@/pages/Welcom'
 import store from '../vuex/index.js'
 
+
+import Welcom from '@/pages/Welcom'
+import ModuleManaged from '@/pages/auth/ModuleManaged'
 Vue.use(Router)
 
  let router = new Router({
@@ -14,9 +16,9 @@ Vue.use(Router)
       name: 'index',
       component: Welcom
     },{
-      path: '/test1',
-      name: 'HelloWorld',
-      component: Welcom
+      path: '/authIndex',
+      name: 'ModuleManaged',
+      component: ModuleManaged
     },{
       path: '/test2',
       name: 'HelloWorld',

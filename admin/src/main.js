@@ -10,6 +10,9 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css';
 import '@/assets/fonts/iconfont.css'
 
+//自定义组件 全局注册
+import hyTable from './components/hyTable'
+Vue.component('hy-table', hyTable);
 
 
 require("./common/common.css")

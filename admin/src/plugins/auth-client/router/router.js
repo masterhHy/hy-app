@@ -35,7 +35,9 @@ export default {
 		            next()
 		          }
 		        } else {
-		        	next()
+		        	//next();
+		        	//进入界面要直接登录
+		        	window.location.href = Config.authUrl + '/oauth/authorize?response_type=code&client_id=' + Config.appId + '&redirect_uri=' +Config.baseUrl;
 		        }
 		      }
     })

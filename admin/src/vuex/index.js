@@ -31,7 +31,7 @@ export default new Vuex.Store({
 								subModules:[{ 
 										id:"4",
 										moduleName:"test2模块",
-										modulePath:"/test3",
+										modulePath:"/authIndex",
 										parentId:"3",
 										active:1, 
 										moduleCode:"MODULE_MANAGED",

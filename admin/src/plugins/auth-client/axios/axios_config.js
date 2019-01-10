@@ -30,6 +30,9 @@ export default{
 	    // http 拦截器
 	    Vue.axios.interceptors.response.use(function (response) {
 	      // Do something with response data
+	      if(!response.data.status){
+	      	Vue.prototype.$notify.error("后台出错了");
+	      }
 	      return response.data
 	    }, function (error) {
 	      if (error && error.response) {

@@ -140,12 +140,15 @@ export default {
     }
   },
   created () {
-    this.$store.commit("menuInfo",{});
-    //获取权限
-    
-    //获取用户信息
-    var ui = window.localStorage.getItem("USER_INFO");
-    this.$store.commit("userInfo",{userInfo:JSON.parse(ui)||{}});
+  	//获取权限
+  	this.axios.post("/user/getMenu").then(res=>{
+  		if(res.status){
+  			this.$store.commit("menuInfo",res.data);
+  			//获取用户信息
+		    var ui = window.localStorage.getItem("USER_INFO");
+		    this.$store.commit("userInfo",{userInfo:JSON.parse(ui)||{}});
+  		}
+  	})
   },
   methods: {
     clickMenu (menu, parent) {
