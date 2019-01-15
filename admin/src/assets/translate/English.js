@@ -1,4 +1,5 @@
 export const En = {
+	STSTEM_LIVED:'System Sperator',
   STSTEM_SETTINGS: 'System Set',
   APP_MANAGED: 'App managed',
   USER_MANAGED: 'User managed',

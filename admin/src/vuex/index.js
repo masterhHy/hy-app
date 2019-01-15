@@ -20,7 +20,7 @@ export default new Vuex.Store({
       state.userInfo=userInfo;
     },
     menuInfo (state,{ menuInfo }) {
-    	menuInfo=[{ 
+    	/*menuInfo=[{ 
 								id:"3",
 								moduleName:"test模块",
 								modulePath:"",
@@ -65,7 +65,7 @@ export default new Vuex.Store({
 									moduleIcon:"",
 									subModules:[]
 								}]
-							}]
+							}]*/
     	
       state.menuInfo=menuInfo;
     },

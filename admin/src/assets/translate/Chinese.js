@@ -1,5 +1,6 @@
 export const Ch =
   {
+  	STSTEM_LIVED: '系统运营',
     STSTEM_SETTINGS: '系统设置',
     APP_MANAGED: '应用管理',
     USER_MANAGED: '用户管理',
