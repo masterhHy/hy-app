@@ -1,5 +1,5 @@
 <template lang="html">
-  <el-dialog :title="$t('constant.module.ADD_MODULE')" :visible.sync="addModuleShow">
+  <el-dialog :title="$t('constant.module.ADD_MODULE')" :visible.sync="moduleShow">
     <el-form ref="moduleAddForm" :model="form" label-width="160px" :rules="formRules" :inline="true">
       <el-row>
           <el-col :span="12">
@@ -94,6 +94,20 @@
 
 <script>
 export default {
+	props:{
+		show:{
+			type: Boolean,
+	    default: function() {
+	      return false;
+	    },
+		},
+		formData:{
+			type: Object,
+	    default: function() {
+	      return {};
+	    },
+		}
+	},
   data () {
     var self = this
     var validateModuleCode = (rule, value, callback) => {

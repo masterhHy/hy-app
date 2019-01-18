@@ -45,7 +45,7 @@
               </span>
     </el-dialog>-->
     <!--新增模块表单-->
-    <!--<module-add ref="addModule" @success="reLoadTreeAndTable"></module-add>-->
+    <module-add :show="addOrUpdateAuthShow" @success="reLoadTreeAndTable"></module-add>
     <!--编辑模块表单-->
     <!--<module-edit ref="editModule" @success="reLoadTreeAndTable">-->
     </module-edit>
@@ -54,7 +54,6 @@
 
 <script>
 import ModuleAdd from './ModuleAdd.vue'
-import ModuleEdit from './ModuleEdit.vue'
 export default {
   components: {
   	
@@ -62,6 +61,7 @@ export default {
   data () {
     return {
     	treeLoading:false,
+    	addOrUpdateAuthShow:false,
     	authData:[{
           id: 1,
           label: '一级 1',
@@ -114,6 +114,7 @@ export default {
   },
   methods: {
   	addTreeNode(id){
+  		this.addOrUpdateAuthShow=true;
   		console.log(id);
   	},
   	removeTreeNode(id){
