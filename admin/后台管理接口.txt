@@ -18,3 +18,10 @@ status:true,
 	}]
 }
 
+获取格式化的全部权限
+/user/getALLAuth
+参数无
+
+根据parent获取旗下所有权限
+/user/getSubAuth
+参数 {pageNumber:1,pageSize:10,parentId:0}

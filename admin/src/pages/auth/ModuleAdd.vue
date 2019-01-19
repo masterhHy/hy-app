@@ -1,19 +1,23 @@
 <template lang="html">
-  <el-dialog :title="$t('constant.module.ADD_MODULE')" :visible.sync="moduleShow">
-    <el-form ref="moduleAddForm" :model="form" label-width="160px" :rules="formRules" :inline="true">
+  <el-dialog :title="formData.id?$t('constant.module.EDIT_MODULE'):$t('constant.module.ADD_MODULE')" :visible.sync="show">
+    <el-form ref="moduleAddForm" :model="formData" label-width="160px" :rules="formRules" :inline="true">
       <el-row>
           <el-col :span="12">
-            <el-form-item :label="$t('constant.module.SYSTEM_NAME')">
-              {{ systemName }}
+          	
+            <el-form-item :label="$t('constant.module.SYSTEM_NAME')" v-if="projectName==''">
+              <el-input v-model="formData.user" placeholder="请输入应用名字(applicationName)"></el-input>
+            </el-form-item>
+            <el-form-item :label="$t('constant.module.SYSTEM_NAME')" v-if="projectName!=''">
+              {{ projectName }}
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item :label="$t('constant.module.PARENT_MODULE')">
-              {{ moduleId ? moduleName : ''}}
+              {{ parentName }}
             </el-form-item>
           </el-col>
         </el-row>
-        <el-row>
+        <!--<el-row>
           <el-col :span="12">
             <el-form-item prop="moduleCode" :label="$t('constant.module.MODULE_CODE')">
               <el-input v-model="form.moduleCode"></el-input>
@@ -83,7 +87,7 @@
               </el-select>
             </el-form-item>
           </el-col>
-        </el-row>
+        </el-row>-->
    </el-form>
     <div slot="footer" class="dialog-footer">
       <el-button @click="addModuleShow = false">{{$t('button.CANCEL')}}</el-button>
@@ -104,62 +108,26 @@ export default {
 		formData:{
 			type: Object,
 	    default: function() {
-	      return {};
+	      return {
+	      	id:"",
+	      	icon:"",
+	      	name:"",
+	      	projectName:"",
+	      	type:2,
+	      	url:"",
+	      	signCode:"",
+	      	parentName:"",
+	      };
 	    },
 		}
 	},
   data () {
-    var self = this
-    var validateModuleCode = (rule, value, callback) => {
-     /* self.$http.get(`${DataMainApi}/module/validate/${self.form.moduleCode}`)
-        .then(res => {
-          if (res.data.code === Status.success) {
-            callback()
-          } else {
-            callback(new Error(self.$t('constant.module.MODULE_CODE_EXIST_NOTIFY')))
-          }
-        })*/
-    }
-    return {
-      form: {
-        moduleCode: null,
-        moduleName: null,
-        modulePath: null,
-        parentId: null,
-        moduleIcon: null,
-        httpMethod: null,
-        isOperating: 0,
-        sort: 0,
-        systemId: null,
-        active: 1
-      },
-      // 表单验证
-      formRules: {
-        moduleCode: [
-          { required: true, message: self.$t('constant.module.MODULE_CODE_PLACEHOLDER'), trigger: 'blur' },
-          { min: 3, max: 32, message: self.$t('constant.module.THREE_TO_32'), trigger: 'blur' },
-          { validator: validateModuleCode, trigger: 'blur' }
-        ],
-        moduleName: [
-          { required: true, message: self.$t('constant.module.MODULE_NAME_PLACEHOLDER'), trigger: 'blur' },
-          { min: 3, max: 32, message: self.$t('constant.module.THREE_TO_32'), trigger: 'blur' }
-        ],
-        modulePath: [
-          { required: true, message: self.$t('constant.module.MODULE_PATH_PLACEHOLDER'), trigger: 'blur' },
-          { min: 3, max: 100, message: self.$t('constant.module.THREE_TO_100'), trigger: 'blur' }
-        ]
-      },
-      addModuleShow: false,
-      addModuleLoading: false,
-      options: ['GET', 'POST', 'PUT', 'DELETE'],
-      systemId: null,
-      systemName: null,
-      moduleId: null,
-      moduleName: null
-    }
+   return {
+   	
+   };
   },
   methods: {
-    show (data) {
+    show2 (data) {
       var self = this
       if (this.$refs.moduleAddForm) {
         // 重置表单

@@ -9,17 +9,17 @@
     		 </el-col>
     	</el-row>
       
-      <el-tree  :data="authData" node-key="id"  @node-click="selectNode">
+      <el-tree  :data="authData" node-key="id"  @node-click="selectNode" :props="treeProps">
       	 <span class="custom-tree-node" slot-scope="{ node, data }">
 	        <span class="inline-block text-overflow" style="width: 100px;">{{ node.label }}</span>
 	        <span>
-	          <el-button type="text" size="mini" @click.stop="addTreeNode(node.id)">
+	          <el-button type="text" size="mini" @click.stop="addTreeNode(node.key)">
 	            		新增
 	          </el-button>
-	          <el-button type="text" size="mini" @click.stop="removeTreeNode(node.id)">
+	          <el-button type="text" size="mini" @click.stop="removeTreeNode(node.key)">
 	            		删除
 	          </el-button>
-	          <el-button type="text" size="mini" @click.stop="modifyTreeNode(node.id)">
+	          <el-button type="text" size="mini" @click.stop="modifyTreeNode(node.key)">
 	            		修改
 	          </el-button>
 	        </span>
@@ -30,7 +30,15 @@
     
     <!--右侧表-->
     <el-col :span="17" :offset="1">
-    	
+    	<hy-table url="/user/getSubAuth" :query="tableQuery">
+    		<el-table-column label="权限名称" prop="name"></el-table-column>
+    		<el-table-column label="项目名称" prop="projectName"></el-table-column>
+    		<el-table-column label="图标" prop="icon"></el-table-column>
+    		<el-table-column label="权限类型" prop="type" :formatter="(row, column, cellValue, index)=>{return cellValue==1?'菜单':'按钮'}"></el-table-column>
+    		<el-table-column label="资源定位符" prop="url"></el-table-column>
+    		<el-table-column label="i18n标识符" prop="signCode"></el-table-column>
+    		<el-table-column label="创建时间" prop="createdDate"></el-table-column>
+    	</hy-table>
     	
     </el-col>
     <!--删除模块-->
@@ -45,7 +53,7 @@
               </span>
     </el-dialog>-->
     <!--新增模块表单-->
-    <module-add :show="addOrUpdateAuthShow" @success="reLoadTreeAndTable"></module-add>
+    <module-add :show="addOrUpdateAuthShow" @success="getFormData"></module-add>
     <!--编辑模块表单-->
     <!--<module-edit ref="editModule" @success="reLoadTreeAndTable">-->
     </module-edit>
@@ -56,61 +64,30 @@
 import ModuleAdd from './ModuleAdd.vue'
 export default {
   components: {
-  	
+  	ModuleAdd
   },
   data () {
     return {
     	treeLoading:false,
     	addOrUpdateAuthShow:false,
-    	authData:[{
-          id: 1,
-          label: '一级 1',
-          children: [{
-            id: 4,
-            label: '二级 1-1',
-            children: [{
-              id: 9,
-              label: '三级 1-1-1'
-            }, {
-              id: 10,
-              label: '时间管理金币'
-            }]
-          }]
-        }, {
-          id: 2,
-          label: '一级 2',
-          children: [{
-            id: 5,
-            label: '二级 2-1'
-          }, {
-            id: 6,
-            label: '二级 2-2'
-          }]
-        }, {
-          id: 3,
-          label: '一级 3',
-          children: [{
-            id: 7,
-            label: '二级 3-1'
-          }, {
-            id: 8,
-            label: '二级 3-2',
-            children: [{
-              id: 11,
-              label: '三级 3-2-1'
-            }, {
-              id: 12,
-              label: '三级 3-2-2'
-            }, {
-              id: 13,
-              label: '三级 3-2-3'
-            }]
-          }]
-        }],
+    	treeProps:{
+    		label:"name",
+    		children:"children"
+    	},
+    	authData:[],
+    	tableQuery:{
+    		parentId:null,
+    	}
     }
   },
   created () {
-    
+  	this.treeLoading=true;
+    this.axios.get("/user/getALLAuth").then(res=>{
+    	this.treeLoading=false;
+    	if(res.status){
+    		this.authData=res.data;
+    	}
+    })
   },
   methods: {
   	addTreeNode(id){
@@ -125,6 +102,12 @@ export default {
   	},
   	addRoot(){
   		this.addTreeNode();
+  	},
+  	selectNode(nodeData){
+  		this.tableQuery.parentId=nodeData.id;
+  	},
+  	getFormData(data){
+  		console.log(data);
   	}
   }
 }
