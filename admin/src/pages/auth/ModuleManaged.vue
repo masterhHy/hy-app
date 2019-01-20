@@ -13,13 +13,13 @@
       	 <span class="custom-tree-node" slot-scope="{ node, data }">
 	        <span class="inline-block text-overflow" style="width: 100px;">{{ node.label }}</span>
 	        <span>
-	          <el-button type="text" size="mini" @click.stop="addTreeNode(node.key)">
+	          <el-button type="text" size="mini" @click.stop="addTreeNode(node.data)">
 	            		新增
 	          </el-button>
 	          <el-button type="text" size="mini" @click.stop="removeTreeNode(node.key)">
 	            		删除
 	          </el-button>
-	          <el-button type="text" size="mini" @click.stop="modifyTreeNode(node.key)">
+	          <el-button type="text" size="mini" @click.stop="modifyTreeNode(node.data)">
 	            		修改
 	          </el-button>
 	        </span>
@@ -53,7 +53,7 @@
               </span>
     </el-dialog>-->
     <!--新增模块表单-->
-    <module-add :show="addOrUpdateAuthShow" @success="getFormData"></module-add>
+    <module-add :show="addOrUpdateAuthShow" :formData="addOrUpdateForm" @cancle="addOrUpdateAuthShow=false" @success="getFormData"></module-add>
     <!--编辑模块表单-->
     <!--<module-edit ref="editModule" @success="reLoadTreeAndTable">-->
     </module-edit>
@@ -77,6 +77,17 @@ export default {
     	authData:[],
     	tableQuery:{
     		parentId:null,
+    	},
+    	addOrUpdateForm:{
+    		id:"",
+      	icon:"",
+      	name:"",
+      	projectName:"",
+      	type:2,
+      	url:"",
+      	signCode:"",
+      	parentName:"",
+      	parentId:"",
     	}
     }
   },
@@ -90,18 +101,22 @@ export default {
     })
   },
   methods: {
-  	addTreeNode(id){
+  	addTreeNode(data){
+  		
   		this.addOrUpdateAuthShow=true;
-  		console.log(id);
+  		this.addOrUpdateForm.parentName=data.name||"";
+  		this.addOrUpdateForm.parentId=data.id||"";
+  		this.addOrUpdateForm.projectName=data.projectName||"";
+  		console.log(data);
   	},
   	removeTreeNode(id){
   		
   	},
-  	modifyTreeNode(id){
+  	modifyTreeNode(node){
   		
   	},
   	addRoot(){
-  		this.addTreeNode();
+  		this.addTreeNode({});
   	},
   	selectNode(nodeData){
   		this.tableQuery.parentId=nodeData.id;

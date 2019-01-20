@@ -1,97 +1,61 @@
 <template lang="html">
-  <el-dialog :title="formData.id?$t('constant.module.EDIT_MODULE'):$t('constant.module.ADD_MODULE')" :visible.sync="show">
-    <el-form ref="moduleAddForm" :model="formData" label-width="160px" :rules="formRules" :inline="true">
+  <el-dialog :title="formData.id?$t('constant.module.EDIT_MODULE'):$t('constant.module.ADD_MODULE')" :visible.sync="showModuel" @close="cancle">
+    <el-form ref="moduleAddForm" :model="formData" label-width="100px" :rules="formRules" :inline="true">
       <el-row>
           <el-col :span="12">
           	
-            <el-form-item :label="$t('constant.module.SYSTEM_NAME')" v-if="projectName==''">
+            <el-form-item :label="$t('constant.module.SYSTEM_NAME')" v-if="!formData.projectName">
               <el-input v-model="formData.user" placeholder="请输入应用名字(applicationName)"></el-input>
             </el-form-item>
-            <el-form-item :label="$t('constant.module.SYSTEM_NAME')" v-if="projectName!=''">
-              {{ projectName }}
+            <el-form-item :label="$t('constant.module.SYSTEM_NAME')" v-if="formData.projectName">
+              {{ formData.projectName }}
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item :label="$t('constant.module.PARENT_MODULE')">
-              {{ parentName }}
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <!--<el-row>
-          <el-col :span="12">
-            <el-form-item prop="moduleCode" :label="$t('constant.module.MODULE_CODE')">
-              <el-input v-model="form.moduleCode"></el-input>
-            </el-form-item>
-          </el-col>
-          <el-col :span="12">
-            <el-form-item prop="moduleName" :label="$t('constant.module.MODULE_NAME')">
-              <el-input v-model="form.moduleName"></el-input>
+              {{ formData.parentName }}
             </el-form-item>
           </el-col>
         </el-row>
         <el-row>
           <el-col :span="12">
-            <el-form-item prop="modulePath" :label="$t('constant.module.MODULE_PATH')">
-              <el-input v-model="form.modulePath"></el-input>
+            <el-form-item prop="name" :label="$t('constant.module.MODULE_NAME')">
+              <el-input v-model="formData.name" placeholder="请输入权限名称"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item :label="$t('constant.module.ICON')">
-              <el-input v-model="form.moduleIcon"></el-input>
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <el-row>
-           <el-col :span="12">
-            <el-form-item :label="$t('constant.module.ACTIVE')">
-              <el-switch
-                v-model="form.active"
-                active-color="#13ce66"
-                inactive-color="#ff4949"
-                :active-text="$t('constant.TRUE')"
-                :inactive-text="$t('constant.FALSE')"
-                :active-value="1"
-                :inactive-value="0">
-              </el-switch>
-            </el-form-item>
-          </el-col>
-          <el-col :span="12">
-            <el-form-item :label="$t('constant.module.SORT')">
-              <el-input-number v-model="form.sort" :min="0" :max="200"></el-input-number>
+            <el-form-item prop="icon" :label="$t('constant.module.ICON')">
+              <el-input v-model="formData.icon" placeholder="请输入图标样式"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row>
           <el-col :span="12">
-            <el-form-item :label="$t('constant.module.IS_MENU')">
-              <el-switch
-                v-model="form.isOperating"
-                active-color="#13ce66"
-                inactive-color="#ff4949"
-                :active-text="$t('constant.TRUE')"
-                :inactive-text="$t('constant.FALSE')"
-                :active-value="0"
-                :inactive-value="1">
-              </el-switch>
+            <el-form-item prop="name" :label="$t('constant.module.MODULE_PATH')">
+              <el-input v-model="formData.url" placeholder="请输入URL"></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="12" v-show="form.isOperating">
-            <el-form-item :label="$t('constant.module.HTTP_METHOD')">
-              <el-select v-model="form.httpMethod" :placeholder="$t('constant.module.SELECT')">
-                <el-option
-                  v-for="item in options"
-                  :key="item"
-                  :label="item"
-                  :value="item">
-                </el-option>
-              </el-select>
+          <el-col :span="12">
+            <el-form-item prop="icon" :label="$t('constant.module.MODULE_I18N')">
+              <el-input v-model="formData.signCode" placeholder="请输入i18n标识符"></el-input>
             </el-form-item>
           </el-col>
-        </el-row>-->
+        </el-row>
+        <el-row>
+          <el-col :span="12">
+            <el-form-item :label="$t('constant.module.AUTH_TYPE')">
+					    <el-radio-group v-model="formData.type">
+					      <el-radio :label="1">菜单权限</el-radio>
+					      <el-radio :label="2">按钮权限</el-radio>
+					    </el-radio-group>
+					  </el-form-item>
+          </el-col>
+        </el-row>
+        
    </el-form>
     <div slot="footer" class="dialog-footer">
-      <el-button @click="addModuleShow = false">{{$t('button.CANCEL')}}</el-button>
-      <el-button type="primary" @click="saveModule" :loading="addModuleLoading">{{$t('button.SURE')}}</el-button>
+      <el-button @click="showModuel=false">{{$t('button.CANCEL')}}</el-button>
+      <el-button type="primary" @click="saveOrUpdate" :loading="addModuleLoading">{{$t('button.SURE')}}</el-button>
     </div>
   </el-dialog>
 </template>
@@ -117,16 +81,24 @@ export default {
 	      	url:"",
 	      	signCode:"",
 	      	parentName:"",
+	      	parentId:"",
 	      };
 	    },
 		}
 	},
   data () {
    return {
-   	
+   		formRules:{
+   			
+   		},
+   		addModuleLoading:false,
+   		showModuel:false,
    };
   },
   methods: {
+  	cancle(){
+  		this.$emit("cancle");
+  	},
     show2 (data) {
       var self = this
       if (this.$refs.moduleAddForm) {
@@ -150,7 +122,7 @@ export default {
       this.moduleId = data.moduleId
       this.moduleName = data.moduleName
     },
-    saveModule () {
+    saveOrUpdate () {
       var self = this
       // 校验表单
       self.$refs.moduleAddForm.validate(result => {
@@ -176,6 +148,11 @@ export default {
         }
       })
     }
+  },
+  watch:{
+  	show(){
+  		this.showModuel=this.show;
+  	}
   }
 }
 </script>
