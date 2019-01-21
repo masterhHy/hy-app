@@ -117,7 +117,7 @@ export const Ch =
         NONE: '无',
         TOKEN_VALIDITY: 'token有效期(秒)',
         AUTO_APPROVE: '静默授权',
-        DELETE_CLIENT_HINT: '确定删除选中应用？',
+        DELETE_CLIENT_HINT: '确定删除该应用？',
         DELETE_CLIENT_SUCCESS_NOTIFY: '删除应用成功!',
         DELETE_CLIENT_FAILED_NOTIFY: '删除应用失败',
         SAVE_CLIENT_SUCCESS_NOTIFY: '保存应用成功！',

@@ -14,8 +14,6 @@ import '@/assets/fonts/iconfont.css'
 //自定义组件 全局注册
 import hyTable from './components/hyTable'
 Vue.component('hy-table', hyTable);
-import hyConfirm from './components/hyConfirm'
-Vue.component('hy-confirm', hyConfirm);
 
 
 

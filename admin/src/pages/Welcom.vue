@@ -8,7 +8,7 @@
 	  	<el-table-column prop="id" label="id" ></el-table-column>
 	  	<el-table-column prop="type" label="type" ></el-table-column>
 	  </hy-table>
-		
+		<button type="button" @click="click"> click</button>
 	</div>
   
 </template>
@@ -27,6 +27,11 @@ export default {
     }
   },
   created(){
+  },
+  methods:{
+  	click(){
+  		this.$utils.error({title:"提示",msg:"是否要删除"})
+  	}
   }
 }
 </script>

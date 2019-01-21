@@ -11,9 +11,9 @@
 				    <el-form-item :label="$t('constant.client.CLIENT_NAME')">
 				      <el-input v-model="tableQuery.clientId" :placeholder="$t('constant.client.CLIENT_NAME')"></el-input>
 				    </el-form-item>
-				    <el-form-item>
+				    <!--<el-form-item>
 				      <el-button type="primary" @click="query">{{$t('button.SEARCH')}}</el-button>
-				    </el-form-item>
+				    </el-form-item>-->
 			    </el-form>
 		    </div>
     	</el-col>
@@ -56,14 +56,6 @@
 			
 		</hy-table>
 
-    <!--删除系统-->
-     <hy-confirm :title="$t('constant.HINT')" 
-    	:msg="$t('constant.module.DELETE_MODULE_HINT')"
-    	:show.sync="deleteDialogShow"
-    	:loading="deleteDialogLoading"
-    	@success="deleteDialogClick"
-    	>
-    </hy-confirm>
     
     <!--新增系统表单-->
     <!--<add-system ref="addSystem" @success="loadTable"></add-system>-->
@@ -89,7 +81,8 @@ export default {
     return {
     	tableQuery:{
     		clientId:"",
-    	}
+    	},
+    	showAddDialog:false,
     }
   },
   methods: {
@@ -97,14 +90,17 @@ export default {
     	return cellValue.replace("{noop}","");
     },
     remove(row){
-    	
-    	this.axios.post("/client/deleteClientById",{clientId:row.clientId}).then(res=>{
-    		if(res.status){
-    			this.$notify.success(this.$t('constant.system.DELETE_SYSTEM_SUCCESS_NOTIFY'))
-    		}else{
-    			 this.$notify.error(this.$t('constant.system.DELETE_SYSTEM_FAILED_NOTIFY'))
-    		}
+    	this.$utils.check({title:this.$t("constant.HINT"),msg:this.$t("constant.client.DELETE_CLIENT_HINT")},done=>{
+    		this.axios.post("/client/deleteClientById",{clientId:row.clientId}).then(res=>{
+	    		if(res.status){
+	    			this.$notify.success(this.$t('constant.system.DELETE_SYSTEM_SUCCESS_NOTIFY'))
+	    		}else{
+	    			 this.$notify.error(this.$t('constant.system.DELETE_SYSTEM_FAILED_NOTIFY'))
+	    		}
+	    		done();
+	    	})
     	})
+    	
     },
     edit(row){
     	

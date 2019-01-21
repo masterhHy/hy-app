@@ -42,13 +42,6 @@
     	
     </el-col>
     <!--删除模块-->
-    <hy-confirm :title="$t('constant.HINT')" 
-    	:msg="$t('constant.module.DELETE_MODULE_HINT')"
-    	:show.sync="deleteDialogShow"
-    	:loading="deleteDialogLoading"
-    	@success="deleteDialogClick"
-    	>
-    </hy-confirm>
     
     <!--新增或修改表单-->
     <module-add :show="addOrUpdateAuthShow" :formData="addOrUpdateForm" :addRoot="addRootView" @cancle="()=>{addOrUpdateAuthShow=false;addRootView=false;}" @success="addSuccess"></module-add>
@@ -57,10 +50,10 @@
 </template>
 
 <script>
-import ModuleAdd from './ModuleAdd.vue'
+import moduleAdd from '@/pages/auth/ModuleAdd'
 export default {
   components: {
-  	ModuleAdd
+  	moduleAdd
   },
   data () {
   	var formData =this.getFormData();
@@ -77,9 +70,6 @@ export default {
     	},
     	addOrUpdateForm:formData,
     	addRootView:false,
-    	deleteDialogShow:false,
-    	deleteDialogLoading:false,
-    	deleteId:"",
     }
   },
   created () {
@@ -94,24 +84,18 @@ export default {
   		this.addOrUpdateForm.projectName=data.projectName||"";
   	},
   	removeTreeNode(id){
-  		this.deleteId=id;
-  		this.deleteDialogShow=true;
-  		
-  	},
-  	deleteDialogClick(){
-  		this.deleteDialogLoading=true;
-  		this.axios.post("/user/deleteAuthById",{id:this.deleteId}).then(res=>{
-  			if(res.status){
+  		this.$utils.check({title:this.$t('constant.HINT'),msg:this.$t('constant.module.DELETE_MODULE_HINT')},(done)=>{
+  			this.axios.post("/user/deleteAuthById",{id:id}).then(res=>{
   				if (res.status) {
             this.$notify.success(this.$t('constant.module.DELETE_MODULE_SUCCESS_NOTIFY'))
           } else {
             this.$notify.error(this.$t('constant.module.DELETE_MODULE_FAILED_NOTIFY'))
           }
-          this.deleteDialogLoading=false;
-          this.deleteDialogShow=false;
+          done();
 	    		this.getTreeData();
-	    	}
+	  		})
   		})
+  		
   	},
   	modifyTreeNode(node,data){
   		this.addOrUpdateAuthShow=true;

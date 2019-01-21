@@ -2,46 +2,54 @@
 
 export default {
   install: function (Vue, Router) {
-  	
     // 设置vue原型链
     Vue.prototype.$utils = {
-      token () {
-      	const h = Vue.prototype.$createElement;
+    	//确认方法
+      check (param,callback) {
+      	var msg='<div style="font-size:16px;">'+param.msg||""+'<div>';
         Vue.prototype.$msgbox({
-          title: '消息',
-          message: h('p', null, [
-            h('span', null, '内容可以是 '),
-            h('i', { style: 'color: teal' }, 'VNode')
-          ]),
+          title: param.title||'提示',
+          message: msg,
+          dangerouslyUseHTMLString:true,
           showCancelButton: true,
           confirmButtonText: '确定',
           cancelButtonText: '取消',
+          type: 'info',
           beforeClose: (action, instance, done) => {
             if (action === 'confirm') {
               instance.confirmButtonLoading = true;
               instance.confirmButtonText = '执行中...';
               setTimeout(() => {
-                done();
-                setTimeout(() => {
-                  instance.confirmButtonLoading = false;
-                }, 300);
+                callback(done);
               }, 3000);
             } else {
               done();
             }
+          },
+          callback:(action, instance)=>{
+          	setTimeout(() => {
+                instance.confirmButtonLoading = false;
+            }, 300);
           }
-        }).then(action => {
-          this.$message({
-            type: 'info',
-            message: 'action: ' + action
-          });
-        });
-      	
-      	
-        return Token.token();
+        })
       },
-      logout () {
-        Token.deleteToken();
+      success(param){
+      	if(!param){
+      		param={};
+      	}
+      	 Vue.prototype.$notify({
+          title: param.title||"提示",
+          message: param.msg||"操作成功!",
+          type: 'success'
+        });
+      },
+      error(param){
+      	if(!param){
+      		param={};
+      	}
+      	 Vue.prototype.$alert(param.msg||"操作失败!", param.title||"提示", {
+          confirmButtonText: '确定',
+        });
       }
     }
   }
