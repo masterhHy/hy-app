@@ -14,7 +14,7 @@
 	          @size-change="handleSizeChange"
 	          @current-change="handleCurrentChange"
 	          :current-page="queryForm.pageNumber"
-	          :page-sizes="[ 10, 20, 50]"
+	          :page-sizes="[5, 10, 20, 50]"
 	          :page-size="queryForm.pageSize"
 	          layout="total, sizes, prev, pager, next, jumper"
 	          :total="tableTotal">
@@ -37,7 +37,7 @@ export default {
       tableTotal:0,
       queryForm:{
       	pageNumber:1,
-      	pageSize:10
+      	pageSize:this.pageSize,
       },
       clientTableDataIsLoad:false,
       clientTableData:[],
@@ -62,6 +62,12 @@ export default {
     	 type: Object,
         default: function() {
           return {};
+        }
+    },
+    pageSize:{
+    	 type: Number,
+        default: function() {
+          return 10;
         }
     }
   },

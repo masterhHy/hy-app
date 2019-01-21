@@ -25,3 +25,16 @@ status:true,
 根据parent获取旗下所有权限
 /user/getSubAuth
 参数 {pageNumber:1,pageSize:10,parentId:0}
+
+权限新增或修改
+/user/addOrUpdateAuth
+参数
+{id:"",icon:"",name:"",projectName:"",url:"",signCode:"",parentId:""}
+
+删除权限 以及他子类所有权限
+/user/deleteAuthById
+参数 {id:""}
+
+获取所有应用信息
+/client/getClientData
+参数 {pageNumber:1,pageSize:10,clientId:""}

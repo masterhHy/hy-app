@@ -13,13 +13,13 @@
       	 <span class="custom-tree-node" slot-scope="{ node, data }">
 	        <span class="inline-block text-overflow" style="width: 100px;">{{ node.label }}</span>
 	        <span>
-	          <el-button type="text" size="mini" @click.stop="addTreeNode(node.data)">
+	          <el-button type="text" size="mini" @click.stop="addTreeNode(node,data)">
 	            		新增
 	          </el-button>
 	          <el-button type="text" size="mini" @click.stop="removeTreeNode(node.key)">
 	            		删除
 	          </el-button>
-	          <el-button type="text" size="mini" @click.stop="modifyTreeNode(node.data)">
+	          <el-button type="text" size="mini" @click.stop="modifyTreeNode(node,data)">
 	            		修改
 	          </el-button>
 	        </span>
@@ -30,7 +30,7 @@
     
     <!--右侧表-->
     <el-col :span="17" :offset="1">
-    	<hy-table url="/user/getSubAuth" :query="tableQuery">
+    	<hy-table url="/user/getSubAuth" :query="tableQuery" >
     		<el-table-column label="权限名称" prop="name"></el-table-column>
     		<el-table-column label="项目名称" prop="projectName"></el-table-column>
     		<el-table-column label="图标" prop="icon"></el-table-column>
@@ -42,20 +42,16 @@
     	
     </el-col>
     <!--删除模块-->
-    <!--<el-dialog
-      :title="$t('constant.HINT')"
-      :visible.sync="deleteDialogShow"
-      width="30%">
-      <span>{{$t('constant.module.DELETE_MODULE_HINT')}}</span>
-      <span slot="footer" class="dialog-footer">
-                <el-button @click="deleteDialogShow = false">{{$t('button.CANCEL')}}</el-button>
-                <el-button type="danger" :loading="deleteDialogLoading" @click="deleteDialogClick">{{$t('button.SURE')}}</el-button>
-              </span>
-    </el-dialog>-->
-    <!--新增模块表单-->
-    <module-add :show="addOrUpdateAuthShow" :formData="addOrUpdateForm" @cancle="addOrUpdateAuthShow=false" @success="getFormData"></module-add>
-    <!--编辑模块表单-->
-    <!--<module-edit ref="editModule" @success="reLoadTreeAndTable">-->
+    <hy-confirm :title="$t('constant.HINT')" 
+    	:msg="$t('constant.module.DELETE_MODULE_HINT')"
+    	:show.sync="deleteDialogShow"
+    	:loading="deleteDialogLoading"
+    	@success="deleteDialogClick"
+    	>
+    </hy-confirm>
+    
+    <!--新增或修改表单-->
+    <module-add :show="addOrUpdateAuthShow" :formData="addOrUpdateForm" :addRoot="addRootView" @cancle="()=>{addOrUpdateAuthShow=false;addRootView=false;}" @success="addSuccess"></module-add>
     </module-edit>
   </el-row>
 </template>
@@ -67,6 +63,7 @@ export default {
   	ModuleAdd
   },
   data () {
+  	var formData =this.getFormData();
     return {
     	treeLoading:false,
     	addOrUpdateAuthShow:false,
@@ -78,7 +75,85 @@ export default {
     	tableQuery:{
     		parentId:null,
     	},
-    	addOrUpdateForm:{
+    	addOrUpdateForm:formData,
+    	addRootView:false,
+    	deleteDialogShow:false,
+    	deleteDialogLoading:false,
+    	deleteId:"",
+    }
+  },
+  created () {
+  	this.getTreeData();
+  },
+  methods: {
+  	addTreeNode(node,data){
+  		this.addOrUpdateForm=this.getFormData();
+  		this.addOrUpdateAuthShow=true;
+  		this.addOrUpdateForm.parentName=data.name||"";
+  		this.addOrUpdateForm.parentId=data.id||"";
+  		this.addOrUpdateForm.projectName=data.projectName||"";
+  	},
+  	removeTreeNode(id){
+  		this.deleteId=id;
+  		this.deleteDialogShow=true;
+  		
+  	},
+  	deleteDialogClick(){
+  		this.deleteDialogLoading=true;
+  		this.axios.post("/user/deleteAuthById",{id:this.deleteId}).then(res=>{
+  			if(res.status){
+  				if (res.status) {
+            this.$notify.success(this.$t('constant.module.DELETE_MODULE_SUCCESS_NOTIFY'))
+          } else {
+            this.$notify.error(this.$t('constant.module.DELETE_MODULE_FAILED_NOTIFY'))
+          }
+          this.deleteDialogLoading=false;
+          this.deleteDialogShow=false;
+	    		this.getTreeData();
+	    	}
+  		})
+  	},
+  	modifyTreeNode(node,data){
+  		this.addOrUpdateAuthShow=true;
+  		this.addOrUpdateForm.id=data.id;
+  		this.addOrUpdateForm.icon=data.icon;
+  		this.addOrUpdateForm.name=data.name;
+  		this.addOrUpdateForm.type=data.type;
+  		this.addOrUpdateForm.url=data.url;
+  		this.addOrUpdateForm.signCode=data.signCode;
+  		this.addOrUpdateForm.parentId=data.parentId;
+  		this.addOrUpdateForm.projectName=data.projectName;
+  		
+  		if(data.parentId){
+  			this.addOrUpdateForm.parentName=node.parent.data.name;
+  		}else{
+  			this.addOrUpdateForm.parentName="";
+  		}
+  	},
+  	addRoot(){
+  		this.addRootView=true;
+  		this.addTreeNode({},{});
+  	},
+  	selectNode(nodeData){
+  		this.tableQuery.parentId=nodeData.id;
+  	},
+  	addSuccess(data){
+  		this.addOrUpdateAuthShow=false;
+  		this.addRoot=false;
+  		this.getTreeData();
+  		
+  	},
+  	getTreeData(){
+  		this.treeLoading=true;
+	    this.axios.get("/user/getALLAuth").then(res=>{
+	    	this.treeLoading=false;
+	    	if(res.status){
+	    		this.authData=res.data;
+	    	}
+	    })
+  	},
+  	getFormData(){
+  		return {
     		id:"",
       	icon:"",
       	name:"",
@@ -89,41 +164,8 @@ export default {
       	parentName:"",
       	parentId:"",
     	}
-    }
-  },
-  created () {
-  	this.treeLoading=true;
-    this.axios.get("/user/getALLAuth").then(res=>{
-    	this.treeLoading=false;
-    	if(res.status){
-    		this.authData=res.data;
-    	}
-    })
-  },
-  methods: {
-  	addTreeNode(data){
-  		
-  		this.addOrUpdateAuthShow=true;
-  		this.addOrUpdateForm.parentName=data.name||"";
-  		this.addOrUpdateForm.parentId=data.id||"";
-  		this.addOrUpdateForm.projectName=data.projectName||"";
-  		console.log(data);
-  	},
-  	removeTreeNode(id){
-  		
-  	},
-  	modifyTreeNode(node){
-  		
-  	},
-  	addRoot(){
-  		this.addTreeNode({});
-  	},
-  	selectNode(nodeData){
-  		this.tableQuery.parentId=nodeData.id;
-  	},
-  	getFormData(data){
-  		console.log(data);
   	}
+  	
   }
 }
 </script>

@@ -159,19 +159,19 @@ export const Ch =
         AUTH_TYPE: '权限类型',
         HTTP_METHOD: 'http方法',
         SELECT: '请选择',
-        DELETE_MODULE_HINT: '确定删除选中模块？',
+        DELETE_MODULE_HINT: '确定删除该权限，以及其下所有子权限？',
         LOAD_MODULE_TREE_FAILED_NOTIFY: '获取模块树失败',
-        DELETE_MODULE_SUCCESS_NOTIFY: '删除模块成功!',
-        DELETE_MODULE_FAILED_NOTIFY: '删除模块失败！',
-        DELETE_MODULE_WARN_NOTIFY: '请选择需要删除的模块',
-        MODULE_CODE_EXIST_NOTIFY: '模块编码已存在!',
+        DELETE_MODULE_SUCCESS_NOTIFY: '删除权限成功!',
+        DELETE_MODULE_FAILED_NOTIFY: '删除权限失败！',
+        DELETE_MODULE_WARN_NOTIFY: '请选择需要删除的权限',
+        MODULE_CODE_EXIST_NOTIFY: '权限编码已存在!',
         MODULE_CODE_PLACEHOLDER: '请输入模块编码',
         MODULE_NAME_PLACEHOLDER: '请输入模块名称',
         MODULE_PATH_PLACEHOLDER: '请输入模块路径',
         THREE_TO_32: '长度在 3 到 32 个字符',
         THREE_TO_100: '长度在 3 到 100 个字符',
-        SAVE_MODULE_SUCCESS_NOTIFY: '保存模块成功！',
-        SAVE_MODULE_FAILED_NOTIFY: '保存模块失败！'
+        SAVE_MODULE_SUCCESS_NOTIFY: '保存权限成功！',
+        SAVE_MODULE_FAILED_NOTIFY: '保存权限失败！'
       }
     },
     el: {

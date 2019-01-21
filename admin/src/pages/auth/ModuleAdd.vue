@@ -4,8 +4,8 @@
       <el-row>
           <el-col :span="12">
           	
-            <el-form-item :label="$t('constant.module.SYSTEM_NAME')" v-if="!formData.projectName">
-              <el-input v-model="formData.user" placeholder="请输入应用名字(applicationName)"></el-input>
+            <el-form-item prop="projectName" :label="$t('constant.module.SYSTEM_NAME')" v-if="addRoot">
+              <el-input v-model="formData.projectName" placeholder="请输入应用名字(applicationName)"></el-input>
             </el-form-item>
             <el-form-item :label="$t('constant.module.SYSTEM_NAME')" v-if="formData.projectName">
               {{ formData.projectName }}
@@ -31,12 +31,12 @@
         </el-row>
         <el-row>
           <el-col :span="12">
-            <el-form-item prop="name" :label="$t('constant.module.MODULE_PATH')">
+            <el-form-item prop="url" :label="$t('constant.module.MODULE_PATH')">
               <el-input v-model="formData.url" placeholder="请输入URL"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item prop="icon" :label="$t('constant.module.MODULE_I18N')">
+            <el-form-item prop="signCode" :label="$t('constant.module.MODULE_I18N')">
               <el-input v-model="formData.signCode" placeholder="请输入i18n标识符"></el-input>
             </el-form-item>
           </el-col>
@@ -51,7 +51,6 @@
 					  </el-form-item>
           </el-col>
         </el-row>
-        
    </el-form>
     <div slot="footer" class="dialog-footer">
       <el-button @click="showModuel=false">{{$t('button.CANCEL')}}</el-button>
@@ -65,31 +64,39 @@ export default {
 	props:{
 		show:{
 			type: Boolean,
-	    default: function() {
-	      return false;
-	    },
+		    default: function() {
+		      return false;
+		    },
+		},
+		addRoot:{
+			type: Boolean,
+		    default: function() {
+		      return false;
+		    },
 		},
 		formData:{
 			type: Object,
-	    default: function() {
-	      return {
-	      	id:"",
-	      	icon:"",
-	      	name:"",
-	      	projectName:"",
-	      	type:2,
-	      	url:"",
-	      	signCode:"",
-	      	parentName:"",
-	      	parentId:"",
-	      };
-	    },
+		    default: function() {
+		      return {
+		      	id:"",
+		      	icon:"",
+		      	name:"",
+		      	projectName:"",
+		      	type:2,
+		      	url:"",
+		      	signCode:"",
+		      	parentName:"",
+		      	parentId:"",
+		      };
+		    },
 		}
 	},
   data () {
    return {
    		formRules:{
-   			
+   			name:[{ required: true, message: '请输入权限名称', trigger: 'blur' }],
+   			projectName:[{ required: true, message: '请输入应用名称', trigger: 'blur' }],
+   			url:[{ required: true, message: '请输入唯一的url', trigger: 'blur' }],
    		},
    		addModuleLoading:false,
    		showModuel:false,
@@ -99,41 +106,16 @@ export default {
   	cancle(){
   		this.$emit("cancle");
   	},
-    show2 (data) {
-      var self = this
-      if (this.$refs.moduleAddForm) {
-        // 重置表单
-        self.$refs.moduleAddForm.resetFields()
-      }
-      this.form.moduleCode = null
-      this.form.moduleName = null
-      this.form.modulePath = null
-      this.form.parentId = data.moduleId
-      this.form.moduleIcon = null
-      this.form.httpMethod = null
-      this.form.isOperating = 0
-      this.form.sort = 0
-      this.form.systemId = data.systemId
-      this.form.active = 1
-      this.addModuleShow = true
-
-      this.systemId = data.systemId
-      this.systemName = data.systemName
-      this.moduleId = data.moduleId
-      this.moduleName = data.moduleName
-    },
     saveOrUpdate () {
       var self = this
       // 校验表单
       self.$refs.moduleAddForm.validate(result => {
         self.addModuleLoading = true
         if (result) {
-          /*self.$http.post(`${DataMainApi}/module`, self.form)
+          self.axios.post("/user/addOrUpdateAuth", self.formData)
             .then(res => {
-              if (res.data.code === Status.success) {
+              if (res.status) {
                 self.$notify.success(self.$t('constant.module.SAVE_MODULE_SUCCESS_NOTIFY'))
-                self.addModuleShow = false
-                // 触发事件
                 self.$emit('success')
               } else {
                 self.$notify.error(self.$t('constant.module.SAVE_MODULE_FAILED_NOTIFY'))
@@ -142,7 +124,7 @@ export default {
             })
             .catch(() => {
               self.addModuleLoading = false
-            })*/
+            })
         } else {
           self.addModuleLoading = false
         }
@@ -152,6 +134,10 @@ export default {
   watch:{
   	show(){
   		this.showModuel=this.show;
+      	if (this.$refs.moduleAddForm) {
+	        // 重置表单
+	        this.$refs.moduleAddForm.clearValidate()
+	    }
   	}
   }
 }
