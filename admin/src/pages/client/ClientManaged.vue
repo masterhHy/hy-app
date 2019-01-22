@@ -3,7 +3,7 @@
   <!--查尋條件-->
     <el-row>
     	<el-col :span="6">
-    		<el-button class="inline-block" type="primary" icon="el-icon-add" @click="showAddDialog">{{$t('button.ADD')}}</el-button>
+    		<el-button class="inline-block" type="primary" icon="el-icon-add" @click="add">{{$t('button.ADD')}}</el-button>
     	</el-col>
     	<el-col :span="18">
     		<div class="header">
@@ -22,7 +22,7 @@
 	    
     </el-row>
 
-		<hy-table url="/client/getClientData" :query="tableQuery" :pageSize="5">
+		<hy-table url="/client/getClientData" :query="tableQuery" :pageSize="5" ref="table">
 			<el-table-column label="应用名称" prop="clientId"></el-table-column>
 			<el-table-column label="token有效时间(s)" prop="accessTokenValidity"></el-table-column>
 			<el-table-column label="授权类型" prop="authorizedGrantTypes">
@@ -42,23 +42,23 @@
 	      </template>
 			</el-table-column>
 			<el-table-column label="客户端密码" prop="clientSecret" :formatter="passFormatter"></el-table-column>
-			<el-table-column label="token刷新时间" prop="refreshTokenValidity"></el-table-column>
+			<!--<el-table-column label="token刷新时间" prop="refreshTokenValidity"></el-table-column>-->
 			
 			 <el-table-column
 	      fixed="right"
 	      label="操作"
 	      width="100">
 	      <template slot-scope="scope">
-	        <el-button @click="edit(scope.row)" type="text" size="small">编辑</el-button>
-	        <el-button @click="remove(scope.row)" type="text" size="small">删除</el-button>
+	        <el-button @click="edit(scope.row)" type="text" size="small">{{$t('button.EDIT')}}</el-button>
+	        <el-button @click="remove(scope.row)" type="text" size="small">{{$t('button.DELETE')}}</el-button>
 	      </template>
 	    </el-table-column>
 			
 		</hy-table>
-
+	
     
     <!--新增系统表单-->
-    <!--<add-system ref="addSystem" @success="loadTable"></add-system>-->
+    <client-add ref="addSystem" @success="loadTable" :formData="formData" :show.sync="showAddDialog" :isEdit="isEdit"></client-add>
   </div>
 </template>
 <style scoped="scoped">
@@ -70,19 +70,20 @@
 	}
 </style>
 <script>
+import ClientAdd from '@/pages/client/ClientAdd'
 export default {
   components: {
-  	
-  },
-  created () {
-  	
+  	ClientAdd
   },
   data () {
+  	let formData = this.getFormData();
     return {
     	tableQuery:{
     		clientId:"",
     	},
     	showAddDialog:false,
+    	formData:formData,
+    	isEdit:false,
     }
   },
   methods: {
@@ -98,13 +99,37 @@ export default {
 	    			 this.$notify.error(this.$t('constant.system.DELETE_SYSTEM_FAILED_NOTIFY'))
 	    		}
 	    		done();
+	    		this.loadTable();
 	    	})
     	})
     	
     },
     edit(row){
-    	
+    	this.isEdit=true;
+    	this.showAddDialog=true;
+    	this.formData.clientId=row.clientId;
+    	this.formData.clientSecret=row.clientSecret.replace("{noop}","");
+    	this.formData.accessTokenValidity=row.accessTokenValidity;
+    	this.formData.autoapprove=row.autoapprove;
+    	this.formData.authorizedGrantTypes=row.authorizedGrantTypes;
     },
+    add(){
+    	this.isEdit=false;
+    	this.showAddDialog=true;
+    	this.formData = this.getFormData();
+    },
+    loadTable(){
+    	this.$refs.table.reload();
+    },
+    getFormData(){
+    	return {
+    			clientId: null,
+	        clientSecret: null,
+	        accessTokenValidity: 43200,
+	        autoapprove: 'false',
+	        authorizedGrantTypes: 'authorization_code'
+    	}
+    }
   }
 }
 </script>

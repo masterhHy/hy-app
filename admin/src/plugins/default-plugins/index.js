@@ -19,9 +19,7 @@ export default {
             if (action === 'confirm') {
               instance.confirmButtonLoading = true;
               instance.confirmButtonText = '执行中...';
-              setTimeout(() => {
-                callback(done);
-              }, 3000);
+              callback(done);
             } else {
               done();
             }

@@ -134,7 +134,7 @@ export default {
   watch:{
   	show(){
   		this.showModuel=this.show;
-      	if (this.$refs.moduleAddForm) {
+      if (this.$refs.moduleAddForm) {
 	        // 重置表单
 	        this.$refs.moduleAddForm.clearValidate()
 	    }

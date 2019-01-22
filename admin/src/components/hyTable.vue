@@ -142,6 +142,9 @@ export default {
     	});
     	this.tableTotal=tableData.length;
     	this.tableData = tableData.slice(staxtIndex,endIndex);
+    },
+    reload(){
+    	this.loadTableData();
     }
   },
   watch:{

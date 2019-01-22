@@ -35,6 +35,16 @@ status:true,
 /user/deleteAuthById
 参数 {id:""}
 
+***************************************************************************
 获取所有应用信息
 /client/getClientData
 参数 {pageNumber:1,pageSize:10,clientId:""}
+
+校验clientId 唯一性
+/client/checkClientId
+参数 {clientId:""}
+
+新增或修改client
+/client/addOrUpdateClient
+参数：{ "clientId": "", "clientSecret": "", "accessTokenValidity": 0, "autoapprove": "false", "authorizedGrantTypes": "" }
+***************************************************************************

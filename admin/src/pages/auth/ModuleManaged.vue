@@ -14,13 +14,13 @@
 	        <span class="inline-block text-overflow" style="width: 100px;">{{ node.label }}</span>
 	        <span>
 	          <el-button type="text" size="mini" @click.stop="addTreeNode(node,data)">
-	            		新增
+	            		{{$t('button.ADD')}}
 	          </el-button>
 	          <el-button type="text" size="mini" @click.stop="removeTreeNode(node.key)">
-	            		删除
+	            		{{$t('button.DELETE')}}
 	          </el-button>
 	          <el-button type="text" size="mini" @click.stop="modifyTreeNode(node,data)">
-	            		修改
+	            		{{$t('button.EDIT')}}
 	          </el-button>
 	        </span>
       </span>
@@ -41,7 +41,6 @@
     	</hy-table>
     	
     </el-col>
-    <!--删除模块-->
     
     <!--新增或修改表单-->
     <module-add :show="addOrUpdateAuthShow" :formData="addOrUpdateForm" :addRoot="addRootView" @cancle="()=>{addOrUpdateAuthShow=false;addRootView=false;}" @success="addSuccess"></module-add>
