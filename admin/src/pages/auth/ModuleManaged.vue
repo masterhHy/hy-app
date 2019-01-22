@@ -104,7 +104,7 @@ export default {
   		this.addOrUpdateForm.type=data.type;
   		this.addOrUpdateForm.url=data.url;
   		this.addOrUpdateForm.signCode=data.signCode;
-  		this.addOrUpdateForm.parentId=data.parentId;
+  		this.addOrUpdateForm.parentId=data.parentId||"";
   		this.addOrUpdateForm.projectName=data.projectName;
   		
   		if(data.parentId){
