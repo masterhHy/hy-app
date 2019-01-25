@@ -48,3 +48,6 @@ status:true,
 /client/addOrUpdateClient
 参数：{ "clientId": "", "clientSecret": "", "accessTokenValidity": 0, "autoapprove": "false", "authorizedGrantTypes": "" }
 ***************************************************************************
+获取所有角色
+/role/getRoleData
+参数参数 {pageNumber:1,pageSize:10,name:""}

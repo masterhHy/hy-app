@@ -8,9 +8,6 @@ export const Ch =
     SYSTEM_MANAGED: '系统管理',
     MODULE_MANAGED: '权限管理',
     HOME_PAGE: '首页',
-    SYSTEM_VISUL: '系统监控',
-    ADMIN_MONITOR: '服务监控',
-    ZIPKIN_MONITOR: 'zipkin监控',
     message: {
       title: 'ADMIN',
       LOADING: '加载中',
@@ -87,6 +84,7 @@ export const Ch =
         ROLE_CODE: '角色编码',
         ROLE_CODE_PLACEHOLDER: '请输入角色编码',
         ROLE_NAME: '角色名称',
+        ROLE_IS_ENABLE:'是否已启用',
         ROLE_NAME_PLACEHOLDER: '请输入角色名称',
         ROLE_CODE_EXIST_NOTIFY: '角色编码已存在!',
         SAVE_MODULE_AUTH_SUCCESS_NOTIFY: '保存授权模块成功！',
@@ -125,7 +123,8 @@ export const Ch =
         DELETE_CLIENT_WARN_NOTIFY: '请选择需要删除的应用',
         PLACEHOLDER: '请选择',
         CLIENT_ID_EXIST_NOTIFY: '应用id已存在!',
-        THREE_TO_16: '长度在 3 到 16 个字符'
+        THREE_TO_16: '长度在 3 到 16 个字符',
+        
       },
       system: {
         ADD_SYSTEM: '新增系统',
@@ -171,7 +170,8 @@ export const Ch =
         THREE_TO_32: '长度在 3 到 32 个字符',
         THREE_TO_100: '长度在 3 到 100 个字符',
         SAVE_MODULE_SUCCESS_NOTIFY: '保存权限成功！',
-        SAVE_MODULE_FAILED_NOTIFY: '保存权限失败！'
+        SAVE_MODULE_FAILED_NOTIFY: '保存权限失败！',
+        CREATE_TIME:'创建时间'
       }
     },
     el: {

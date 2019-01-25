@@ -23,9 +23,9 @@
     </el-row>
 
 		<hy-table url="/client/getClientData" :query="tableQuery" :pageSize="5" ref="table">
-			<el-table-column label="应用名称" prop="clientId"></el-table-column>
-			<el-table-column label="token有效时间(s)" prop="accessTokenValidity"></el-table-column>
-			<el-table-column label="授权类型" prop="authorizedGrantTypes">
+			<el-table-column :label="$t('constant.client.CLIENT_NAME')" prop="clientId"></el-table-column>
+			<el-table-column :label="$t('constant.client.TOKEN_VALIDITY')"  prop="accessTokenValidity"></el-table-column>
+			<el-table-column :label="$t('constant.client.AUTHORIZED_GRANT_TYPE')" prop="authorizedGrantTypes">
 				<template slot-scope="scope">
 					<div class="inline-block m-r-xs m-b-xs" v-for="item in scope.row.authorizedGrantTypesArr" >
 						<el-tag v-if="item=='authorization_code'" size="small">authorization_code</el-tag>
@@ -36,17 +36,17 @@
 					</div>
 	      </template>
 			</el-table-column>
-			<el-table-column label="自动授权" prop="autoapprove" >
+			<el-table-column :label="$t('constant.client.AUTO_APPROVE')" prop="autoapprove" >
 				<template slot-scope="scope">
 	        <el-tag :type="scope.row.autoapprove ? 'success' : 'danger'">{{scope.row.autoapprove?'是':'否'}}</el-tag>
 	      </template>
 			</el-table-column>
-			<el-table-column label="客户端密码" prop="clientSecret" :formatter="passFormatter"></el-table-column>
+			<el-table-column :label="$t('constant.client.CLIENT_SECRET')" prop="clientSecret" :formatter="passFormatter"></el-table-column>
 			<!--<el-table-column label="token刷新时间" prop="refreshTokenValidity"></el-table-column>-->
 			
 			 <el-table-column
 	      fixed="right"
-	      label="操作"
+	      :label="$t('constant.OPERATE')"
 	      width="100">
 	      <template slot-scope="scope">
 	        <el-button @click="edit(scope.row)" type="text" size="small">{{$t('button.EDIT')}}</el-button>

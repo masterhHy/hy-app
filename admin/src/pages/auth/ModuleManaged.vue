@@ -31,13 +31,13 @@
     <!--右侧表-->
     <el-col :span="17" :offset="1">
     	<hy-table url="/user/getSubAuth" :query="tableQuery" >
-    		<el-table-column label="权限名称" prop="name"></el-table-column>
-    		<el-table-column label="项目名称" prop="projectName"></el-table-column>
-    		<el-table-column label="图标" prop="icon"></el-table-column>
-    		<el-table-column label="权限类型" prop="type" :formatter="(row, column, cellValue, index)=>{return cellValue==1?'菜单':'按钮'}"></el-table-column>
-    		<el-table-column label="资源定位符" prop="url"></el-table-column>
-    		<el-table-column label="i18n标识符" prop="signCode"></el-table-column>
-    		<el-table-column label="创建时间" prop="createdDate"></el-table-column>
+    		<el-table-column :label="$t('constant.module.MODULE_NAME')" prop="name"></el-table-column>
+    		<el-table-column :label="$t('constant.module.SYSTEM_NAME')" prop="projectName"></el-table-column>
+    		<el-table-column :label="$t('constant.module.ICON')" prop="icon"></el-table-column>
+    		<el-table-column :label="$t('constant.module.AUTH_TYPE')" prop="type" :formatter="(row, column, cellValue, index)=>{return cellValue==1?'菜单':'按钮'}"></el-table-column>
+    		<el-table-column :label="$t('constant.module.MODULE_PATH')" prop="url"></el-table-column>
+    		<el-table-column :label="$t('constant.module.MODULE_I18N')" prop="signCode"></el-table-column>
+    		<el-table-column :label="$t('constant.module.CREATE_TIME')" prop="createTime"></el-table-column>
     	</hy-table>
     	
     </el-col>
@@ -99,11 +99,11 @@ export default {
   	modifyTreeNode(node,data){
   		this.addOrUpdateAuthShow=true;
   		this.addOrUpdateForm.id=data.id;
-  		this.addOrUpdateForm.icon=data.icon;
+  		this.addOrUpdateForm.icon=data.icon||"";
   		this.addOrUpdateForm.name=data.name;
   		this.addOrUpdateForm.type=data.type;
   		this.addOrUpdateForm.url=data.url;
-  		this.addOrUpdateForm.signCode=data.signCode;
+  		this.addOrUpdateForm.signCode=data.signCode||"";
   		this.addOrUpdateForm.parentId=data.parentId||"";
   		this.addOrUpdateForm.projectName=data.projectName;
   		

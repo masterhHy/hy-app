@@ -8,6 +8,7 @@ import store from '../vuex/index.js'
 import Welcom from '@/pages/Welcom'
 import ModuleManaged from '@/pages/auth/ModuleManaged'
 import ClientManaged from '@/pages/client/ClientManaged'
+import RoleManaged from '@/pages/role/RoleManaged'
 Vue.use(Router)
 
  let router = new Router({
@@ -25,9 +26,9 @@ Vue.use(Router)
       name: 'ClientManaged',
       component: ClientManaged
     },{
-      path: '/test3',
-      name: 'HelloWorld',
-      component: Welcom
+      path: '/roleIndex',
+      name: 'RoleManaged',
+      component: RoleManaged
     }
   ]
 })

@@ -7,9 +7,6 @@ export const En = {
   SYSTEM_MANAGED: 'System managed',
   MODULE_MANAGED: 'Module managed',
   HOME_PAGE: 'Home',
-  SYSTEM_VISUL: 'System Visul',
-  ADMIN_MONITOR: 'Cloud Admin',
-  ZIPKIN_MONITOR: 'Zipkin',
   message: {
     title: 'Base Framework',
     LOADING: 'loading..',
@@ -86,6 +83,7 @@ export const En = {
       ROLE_CODE: 'Role code',
       ROLE_CODE_PLACEHOLDER: 'Please enter role code',
       ROLE_NAME: 'Role name',
+      ROLE_IS_ENABLE:'isEnable',
       ROLE_NAME_PLACEHOLDER: 'Please enter role name',
       ROLE_CODE_EXIST_NOTIFY: 'Role code already existed!',
       SAVE_MODULE_AUTH_SUCCESS_NOTIFY: 'Save authority info successful!',
@@ -170,7 +168,8 @@ export const En = {
       THREE_TO_32: 'The length is 3 to 32 characters',
       THREE_TO_100: 'The length is 3 to 100 characters',
       SAVE_MODULE_SUCCESS_NOTIFY: 'Save module successful!',
-      SAVE_MODULE_FAILED_NOTIFY: 'Save module failed!'
+      SAVE_MODULE_FAILED_NOTIFY: 'Save module failed!',
+      CREATE_TIME:'createTime'
     }
   },
   el: {
