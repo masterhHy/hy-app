@@ -36,6 +36,11 @@
         </el-col>
       </el-row>
       <el-row>
+      	<el-col :span="12">
+            <el-form-item :label="$t('constant.client.REDIRECT_URI')">
+              <el-input-number v-model="formData.webServerRedirectUri" :min="10000" ></el-input-number>
+            </el-form-item>
+        </el-col>
         <el-col :span="12">
             <el-form-item :label="$t('constant.client.AUTO_APPROVE')">
               <el-switch
@@ -75,7 +80,8 @@ export default {
 			        clientSecret: null,
 			        accessTokenValidity: 43200,
 			        autoapprove: 'false',
-			        authorizedGrantTypes: 'authorization_code'
+			        authorizedGrantTypes: 'authorization_code',
+			        webServerRedirectUri:''
 		      };
 		    },
 		},

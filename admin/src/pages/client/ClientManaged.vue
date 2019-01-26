@@ -42,6 +42,8 @@
 	      </template>
 			</el-table-column>
 			<el-table-column :label="$t('constant.client.CLIENT_SECRET')" prop="clientSecret" :formatter="passFormatter"></el-table-column>
+			<el-table-column :label="$t('constant.client.REDIRECT_URI')" prop="webServerRedirectUri" ></el-table-column>
+				
 			<!--<el-table-column label="token刷新时间" prop="refreshTokenValidity"></el-table-column>-->
 			
 			 <el-table-column

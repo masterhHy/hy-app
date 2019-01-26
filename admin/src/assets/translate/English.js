@@ -122,7 +122,8 @@ export const En = {
       DELETE_CLIENT_WARN_NOTIFY: 'Please select client to deleted',
       PLACEHOLDER: 'Select',
       CLIENT_ID_EXIST_NOTIFY: 'Client id already existed!',
-      THREE_TO_16: 'The length is 3 to 16 characters'
+      THREE_TO_16: 'The length is 3 to 16 characters',
+      REDIRECT_URI:'REDIRECT_URI'
     },
     system: {
       ADD_SYSTEM: 'Add system',

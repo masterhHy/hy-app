@@ -124,7 +124,7 @@ export const Ch =
         PLACEHOLDER: '请选择',
         CLIENT_ID_EXIST_NOTIFY: '应用id已存在!',
         THREE_TO_16: '长度在 3 到 16 个字符',
-        
+        REDIRECT_URI:'重定向url'
       },
       system: {
         ADD_SYSTEM: '新增系统',
