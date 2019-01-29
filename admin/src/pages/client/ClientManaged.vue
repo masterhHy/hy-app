@@ -114,6 +114,7 @@ export default {
     	this.formData.accessTokenValidity=row.accessTokenValidity;
     	this.formData.autoapprove=row.autoapprove;
     	this.formData.authorizedGrantTypes=row.authorizedGrantTypes;
+    	this.formData.webServerRedirectUri=row.webServerRedirectUri;
     },
     add(){
     	this.isEdit=false;
@@ -129,7 +130,8 @@ export default {
 	        clientSecret: null,
 	        accessTokenValidity: 43200,
 	        autoapprove: 'false',
-	        authorizedGrantTypes: 'authorization_code'
+	        authorizedGrantTypes: 'authorization_code',
+	        webServerRedirectUri:'',
     	}
     }
   }

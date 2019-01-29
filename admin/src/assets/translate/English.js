@@ -123,7 +123,8 @@ export const En = {
       PLACEHOLDER: 'Select',
       CLIENT_ID_EXIST_NOTIFY: 'Client id already existed!',
       THREE_TO_16: 'The length is 3 to 16 characters',
-      REDIRECT_URI:'REDIRECT_URI'
+      REDIRECT_URI:'REDIRECT_URI',
+      CLIENT_REDIRECT_URI_PLACEHOLDER: 'Please enter redirect url',
     },
     system: {
       ADD_SYSTEM: 'Add system',

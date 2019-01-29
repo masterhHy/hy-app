@@ -55,7 +55,10 @@ export default{
 	            		item.params=_this.$route.query;
 	            		item.type=0;
 	            	}
-	            	
+	            	if(Token.token()){
+	            		Token.deleteToken();
+	            		window.location.reload();
+	            	}
 	            	/*if(!window.localStorage.getItem("targetPage")){
 	            		window.localStorage.setItem("targetPage",JSON.stringify(item));
 	            		window.location.href = Config.authUrl + '/oauth/authorize?response_type=code&client_id=' + Config.appId + '&redirect_uri=' +Config.baseUrl

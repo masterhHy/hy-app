@@ -11,5 +11,5 @@ export default {
   appSecret: '123456',
   authUrl: 'http://www.ttimecoin.top/auth',
   resourceUrl:"http://www.ttimecoin.top/user-service-provider/api/",
-  baseUrl: 'http://localhost:8080/'
+  baseUrl: 'http://www.ttimecoin.top'
 }*/

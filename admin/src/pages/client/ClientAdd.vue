@@ -38,7 +38,7 @@
       <el-row>
       	<el-col :span="12">
             <el-form-item :label="$t('constant.client.REDIRECT_URI')">
-              <el-input-number v-model="formData.webServerRedirectUri" :min="10000" ></el-input-number>
+             <el-input v-model="formData.webServerRedirectUri" :placeholder="$t('constant.client.CLIENT_REDIRECT_URI_PLACEHOLDER')"></el-input>
             </el-form-item>
         </el-col>
         <el-col :span="12">
