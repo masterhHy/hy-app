@@ -11,3 +11,26 @@ type: 1 工作 2 学习 3 娱乐
 id 若为null或"" 则新增
 返回数据
 {"code":200,status:true,"message":"操作成功","data":null}
+
+
+查询用户梦想基金列表
+/dream/getDreamData
+参数 
+{orderColumn:"priority",sort:"DESC/ASC"} 排序字段无则不排序
+返回数据
+{"code":200,status:true,"message":"","data":null}
+
+新增或修改梦想基金
+/dream/addOrUpdate
+参数 
+{id:"",description:"",price:0,priority:0,title:""} 有id为更新没有则添加
+返回数据
+{"code":200,status:true,"message":"","data":null}
+
+删除梦想基金
+/dream/deleteById
+参数 
+{id:id}
+返回数据
+{"code":200,status:true,"message":"","data":null}
+
