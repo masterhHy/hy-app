@@ -1,6 +1,6 @@
 
 export default {
-  appId: 'admin',
+  appId: 'time-coin',
   appSecret: '123456',
   authUrl: 'http://localhost:18001/auth',
   resourceUrl:"http://localhost:18000/user-service-provider/api/",

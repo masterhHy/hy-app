@@ -1,5 +1,5 @@
 <template lang="html">
-  <el-dialog :title="$t('constant.client.ADD_CLIENT')" :visible.sync="addAppShow" @close="cancle">
+  <el-dialog :title="isEdit?$t('constant.client.EDIT_CLIENT'):$t('constant.client.ADD_CLIENT')" :visible.sync="addAppShow" @close="cancle">
     <el-form ref="appAddForm" :model="formData" label-width="200px" :rules="formRules" :inline="true">
       <el-row>
         <el-col :span="12">

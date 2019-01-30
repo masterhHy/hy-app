@@ -91,11 +91,12 @@ export const Ch =
         SAVE_MODULE_AUTH_FAILED_NOTIFY: '保存授权模块失败！',
         SAVE_ROLE_SUCCESS_NOTIFY: '保存角色成功！',
         SAVE_ROLE_FAILED_NOTIFY: '保存角色失败！',
-        DELETE_ROLE_HINT: '确定删除选中角色？',
+        DELETE_ROLE_HINT: '确定删除该角色？',
         DELETE_ROLE_SUCCESS_NOTIFY: '删除角色成功!',
         DELETE_ROLE_FAILED_NOTIFY: '删除角色失败',
         DELETE_ROLE_WARN_NOTIFY: '请选择需要删除的角色',
-        THREE_TO_16: '长度在 3 到 16 个字符'
+        THREE_TO_16: '长度在 3 到 16 个字符',
+        ADD_USER:"添加用户"
       },
       client: {
         ADD_CLIENT: '新增应用',

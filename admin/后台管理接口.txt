@@ -51,3 +51,17 @@ status:true,
 获取所有角色
 /role/getRoleData
 参数参数 {pageNumber:1,pageSize:10,name:""}
+
+删除角色
+/role/deleteRoleById
+参数{id:1}
+
+新增或修改role
+/client/addOrUpdateRole
+参数
+{id:1,isEnable:"Y",name:"",auth:"多个用逗号分割"}
+
+*********************************************************************************
+获取用户信息
+/user/getUserData
+参数参数 {pageNumber:1,pageSize:10,userName:""}

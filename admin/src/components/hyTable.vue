@@ -5,7 +5,11 @@
         v-loading="tableLoading"
         :element-loading-text="$t('message.LOADING')"
         border
-        class="m-t" >
+        class="m-t"
+        @selection-change="handleSelectionChange"
+        @row-click="rowClick"
+        ref="baseTable"
+         >
         <slot></slot>
   	</el-table>
   	<el-row class="text-center m-t">
@@ -69,6 +73,12 @@ export default {
         default: function() {
           return 10;
         }
+    },
+    checkBox:{
+    	type: Boolean,
+        default: function() {
+          return false;
+        }
     }
   },
   methods: {
@@ -77,6 +87,17 @@ export default {
     },
     handleCurrentChange (val) {
       this.queryForm.pageNumber = parseInt(val);
+    },
+    handleSelectionChange(val){
+    	this.$emit('selection-change',val);
+    },
+    rowClick(row, event, column){
+    	if(this.checkBox){
+    		this.$refs.baseTable.toggleRowSelection(row);
+    	}
+    	
+    	this.$emit('row-click',row, event, column);
+    	
     },
     loadTableData(){
     	//服务端分页
