@@ -1,7 +1,7 @@
 <template>
   <div class="edit-all">
     <div class="edit-head">
-      <span :class="[work?'bg-blue':'',study?'bg-green':'',play?'bg-red':'','type','left']">{{coinType.label}}</span>
+      <span :class="[work?'bg-blue':'',study?'bg-green':'',play?'bg-red':'','type','left']" @click="_goback">{{coinType.label}}</span>
       <span class="type right bg-gray" @click="_toTimeCoin">保存</span>
     </div>
     <div class="edit-content">
@@ -25,30 +25,37 @@
       },
       methods: {
         _toTimeCoin () {
+          this.$vux.loading.show({
+            text: 'Loading'
+          })
           let param = {remark:this.coinContent,type:this.coinType.value,id:this.id}
           this.axios({
             url:'/coin/addOrUpdate',
             method:'get',
             params:param
           }).then((res)=>{
+            this.$vux.loading.hide()
             this.$router.push({name:'timeCoin'})
           }).catch(()=>{})
+        },
+        _goback () {
+          this.$router.go(-1)
         }
       },
       mounted () {
-        const coinType = this.$route.params.coinType
+        const coinType = Number(this.$route.params.coinType)
         this.coinContent = this.$route.params.coinContent
         this.id = this.$route.params.id
         switch(coinType) {
-          case "1":
+          case 1:
             this.coinType = {label:'工作', value:1}
             this.work = true
             break
-          case "2":
+          case 2:
             this.coinType = {label:'学习', value:2}
             this.study = true
             break
-          case "3":
+          case 3:
             this.coinType = {label:'娱乐', value:3}
             this.play = true
             break

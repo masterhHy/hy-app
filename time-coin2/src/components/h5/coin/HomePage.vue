@@ -2,7 +2,7 @@
   <div class="page">
     <div class="content">
       <div class="img js_timeCoin" :style="backImg" @click="toTimeCoin"></div>
-      <p class="title">人的回忆是由过去构成的</p>
+      <p class="title">人的过去是由回忆构成的</p>
     </div>
 
 

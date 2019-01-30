@@ -2,7 +2,7 @@
 <div>
   <div class="wish-head">
     <div class="operation">
-      <span><img src="@/assets/images/wish1.png" alt="愿望logo" style="height: 40px;"></span>
+      <span @click="_goback"><img src="@/assets/images/wish1.png" alt="愿望logo" style="height: 40px;"></span>
       <span class="icon"><i class="fas fa-trash-alt"></i></span>
       <span class="icon"><i class="fas fa-pencil-alt"></i></span>
     </div>
@@ -11,6 +11,7 @@
       <span class="price">￥{{wish.price}}</span>
     </div>
   </div>
+  <div class="nice-border"></div>
 </div>
 </template>
 
@@ -25,6 +26,11 @@
               priority:3,
               decription:'给菲菲买礼物啦'
             }
+          }
+        },
+        methods: {
+          _goback () {
+            this.$router.go(-1)
           }
         }
     }
@@ -69,5 +75,11 @@
     margin-top: 10px;
     border:1px solid red;
     letter-spacing: 3px;
+  }
+  .nice-border {
+    background-image: url("../../../assets/images/border.png");
+    background-size: 100%;
+    height: 228px;
+    margin: 10px;
   }
 </style>

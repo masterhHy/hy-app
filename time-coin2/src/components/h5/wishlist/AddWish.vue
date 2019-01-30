@@ -41,8 +41,8 @@
       return {
         content: {
           title: '',
-          price: 0,
-          priority: 0,
+          price: null,
+          priority: null,
           description: ''
         },
         show:false

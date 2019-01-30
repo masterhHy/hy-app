@@ -81,21 +81,24 @@ input[type=radio] {
 
 .bg-blue {
   background-color: lightblue;
+  color: white;
 }
 
 .bg-green {
   background-color: lightgreen;
+  color: white;
 }
 
 .bg-red {
-  background-color: pink;
+  background-color:  pink;
+  color: white;
 }
 
 .content-coin {
   height: 90px;
   line-height: 22.5px;
- /* overflow: hidden;*/
   padding-left: 5px;
+  margin: 5px 0;
 }
 /*.content-coin::before {
   float: left;

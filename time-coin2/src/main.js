@@ -8,8 +8,9 @@ import router from './router'
 import Auth from './plugins__config/auth-client'
 import {AlertPlugin, ToastPlugin} from 'vux'
 import './styles/index.less'
+import { LoadingPlugin } from 'vux'
 
-
+Vue.use(LoadingPlugin)
 Vue.use(AlertPlugin)
 Vue.use(ToastPlugin)
 
