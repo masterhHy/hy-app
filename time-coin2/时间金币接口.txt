@@ -18,7 +18,14 @@ id 若为null或"" 则新增
 参数 
 {orderColumn:"priority",sort:"DESC/ASC"} 排序字段无则不排序
 返回数据
-{"code":200,status:true,"message":"","data":null}
+{"code":200,status:true,"message":"","data":[{id:"",title:"",price:0,priority:0,description:""}]}
+
+查询用户梦想基金详情
+/dream/getDreamDataById
+参数
+{id:""}
+返回数据
+{"code":200,status:true,"message":"","data":{id:"",title:"",price:0,priority:0,description:""}}
 
 新增或修改梦想基金
 /dream/addOrUpdate

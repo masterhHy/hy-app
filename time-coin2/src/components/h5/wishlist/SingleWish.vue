@@ -3,8 +3,8 @@
   <div class="wish-head">
     <div class="operation">
       <span @click="_goback"><img src="@/assets/images/wish1.png" alt="愿望logo" style="height: 40px;"></span>
-      <span class="icon"><i class="fas fa-trash-alt"></i></span>
-      <span class="icon"><i class="fas fa-pencil-alt"></i></span>
+      <span class="icon" @click="del"><i class="fas fa-trash-alt"></i></span>
+      <span class="icon" @click="edit"><i class="fas fa-pencil-alt"></i></span>
     </div>
     <div class="wish-brief">
       <span class="title">{{wish.title}}</span>
@@ -16,21 +16,61 @@
 </template>
 
 <script>
+	
     export default {
         name: 'SingleWish',
         data () {
           return {
             wish:{
-              title:'买礼物',
-              price:100,
-              priority:3,
-              decription:'给菲菲买礼物啦'
-            }
+            	id:"",
+              title:'',
+              price:0,
+              priority:0,
+              decription:''
+            },
+            show:false,
           }
+        },
+        mounted(){
+        	this.$vux.loading.show({
+	          text: 'Loading'
+	        })
+        	let id = this.$route.params.id
+        	this.axios({
+	          url:'/dream/getDreamDataById',
+	          method:'post',
+	          params:{id:id}
+	        }).then((res)=>{
+	        	this.$vux.loading.hide()
+	        	if(res.status){
+	        		this.wish=res.data
+	        	}
+	        }).catch(()=>{})
         },
         methods: {
           _goback () {
             this.$router.go(-1)
+          },
+          del(){
+          	if(!this.wish.id){
+          		return
+          	}
+          	let _this =this
+          	this.$utils.confirm({msg:"是否删除这个愿望?",title:"温馨提示"},function(){
+          		_this.$vux.loading.show({text: 'Loading'})
+	          	_this.axios({
+			          url:'/dream/deleteById',
+			          method:'post',
+			          params:{id:_this.wish.id}
+			        }).then((res)=>{
+			        	_this.$vux.loading.hide()
+			        	_this.$router.push({name:'wishList'})
+			        }).catch(()=>{})
+          	})
+          	
+          },
+          edit(){
+          	this.$router.push({name:'addWish',params:this.wish});
           }
         }
     }
@@ -59,7 +99,6 @@
   }
   .wish-brief {
     margin: 10px;
-    border:1px solid red;
   }
   .title {
     display: block;
@@ -73,7 +112,6 @@
     color:#FFF8EA;
     font-size: 14px;
     margin-top: 10px;
-    border:1px solid red;
     letter-spacing: 3px;
   }
   .nice-border {

@@ -37,7 +37,7 @@
     data() {
       return {
         totalAccount: 0, // 梦想总基金
-        sortType:1, //排序类型：1.优先级 2.价格
+        sortType:"1", //排序类型：1.优先级 2.价格
         wishList:[]
       }
     },
@@ -53,12 +53,13 @@
           text: 'Loading'
         })
         let param = {}
-        if (this.sortType === 1) {
-          params.orderColumn = 'priority'
+        if (this.sortType === "1") {
+          param.orderColumn = 'priority'
         }
-        if (this.sortType === 2) {
-          params.sort = 'ASC'
+        if (this.sortType === "2") {
+          param.orderColumn = 'price'
         }
+        param.sort="DESC";
         this.axios({
           url:'/dream/getDreamData',
           method:'get',
@@ -66,11 +67,21 @@
         }).then((res)=>{
           this.$vux.loading.hide()
           this.wishList = res.data
+          let total=0
+	    		for(let ix in this.wishList){
+	    			total+= (this.wishList[ix].price-0)
+	    		}
+	    		this.totalAccount=total
         }).catch(()=>{})
       }
     },
     mounted () {
-
+			this.queryWishLists()
+    },
+    watch:{
+    	sortType(){
+    		this.queryWishLists();
+    	}
     }
   }
 </script>

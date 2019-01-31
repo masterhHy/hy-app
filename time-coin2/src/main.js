@@ -6,18 +6,21 @@ import VueRouter from 'vue-router'
 import App from './App'
 import router from './router'
 import Auth from './plugins__config/auth-client'
-import {AlertPlugin, ToastPlugin} from 'vux'
+import {AlertPlugin, ToastPlugin,LoadingPlugin,ConfirmPlugin } from 'vux'
+import utils from './plugins__config/utils'
 import './styles/index.less'
-import { LoadingPlugin } from 'vux'
-import  { AlertPlugin } from 'vux'
 
-Vue.use(AlertPlugin)
 Vue.use(LoadingPlugin)
 Vue.use(AlertPlugin)
 Vue.use(ToastPlugin)
+Vue.use(ConfirmPlugin)
+
+
 
 Vue.use(VueRouter)
 Vue.use(Auth, router)
+Vue.use(utils)
+
 
 require("./common/common.css")
 require("./assets/css/fa5013/web-fonts-with-css/css/fontawesome-all.css")
