@@ -96,7 +96,8 @@ export const Ch =
         DELETE_ROLE_FAILED_NOTIFY: '删除角色失败',
         DELETE_ROLE_WARN_NOTIFY: '请选择需要删除的角色',
         THREE_TO_16: '长度在 3 到 16 个字符',
-        ADD_USER:"添加用户"
+        ADD_USER:"添加用户",
+        DEL_USER:"删除用户"
       },
       client: {
         ADD_CLIENT: '新增应用',

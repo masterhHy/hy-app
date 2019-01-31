@@ -95,7 +95,8 @@ export const En = {
       DELETE_ROLE_FAILED_NOTIFY: 'Delete role failed!',
       DELETE_ROLE_WARN_NOTIFY: 'Please select role to deleted!',
       THREE_TO_16: 'The length is 3 to 16 characters',
-      ADD_USER:'add user'
+      ADD_USER:'add user',
+      DEL_USER:'delete user'
     },
     client: {
       ADD_CLIENT: 'Add client',

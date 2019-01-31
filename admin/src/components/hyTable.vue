@@ -31,8 +31,16 @@
 
 <script>
 export default {
-	created(){
-		this.loadTableData();
+	mounted(){
+		
+		let isLoad=false;
+		for(let key in this.query){
+			isLoad=true;
+			this.$set(this.queryForm,key,this.query[key]);
+		}
+		if(!isLoad){
+			this.loadTableData();
+		}
 	},
   data () {
     return {

@@ -101,7 +101,7 @@ export default {
       self.$refs.addForm.validate(result => {
         if (result) {
         	self.addLoading = true
-          self.axios.post("/client/addOrUpdateRole", self.formData).then(res => {
+          self.axios.post("/role/addOrUpdateRole", self.formData).then(res => {
           		this.$emit("update:show",false);
           		self.addLoading = false
               if (res.status) {

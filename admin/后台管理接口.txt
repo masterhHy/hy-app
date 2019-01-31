@@ -57,9 +57,22 @@ status:true,
 参数{id:1}
 
 新增或修改role
-/client/addOrUpdateRole
+/role/addOrUpdateRole
 参数
 {id:1,isEnable:"Y",name:"",auth:"多个用逗号分割"}
+
+获取角色下用户
+/role/getRoleUserData
+参数
+{id:"",hisUser:false} hisUser true 获取旗下的  false获取不是他下的
+
+添加用户到角色里
+/role/addUserToRole
+{userIds:"多个用逗号分割",roleId:""}
+
+删除用户从角色里
+/role/deleteUserFromRole
+{userIds:"多个用逗号分割",roleId:""}
 
 *********************************************************************************
 获取用户信息
