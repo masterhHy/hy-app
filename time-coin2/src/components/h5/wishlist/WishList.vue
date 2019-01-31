@@ -38,10 +38,7 @@
       return {
         totalAccount: 0, // 梦想总基金
         sortType:1, //排序类型：1.优先级 2.价格
-        wishList:[
-          {id:1,title:'买礼物',price:100,priority:3,description:'给菲菲买礼物啦'},
-          {id:2,title:'去日本玩',price:10000,priority:3,description:'去日本玩去日本玩去日本玩去日本玩去日本玩去日本玩去日本玩去日本玩去日本玩去日本玩'}
-        ]
+        wishList:[]
       }
     },
     methods:{
@@ -50,7 +47,30 @@
       },
       showSingleWish (id) {
         this.$router.push({name:'singleWish',params:{id:id}})
+      },
+      queryWishLists () {
+        this.$vux.loading.show({
+          text: 'Loading'
+        })
+        let param = {}
+        if (this.sortType === 1) {
+          params.orderColumn = 'priority'
+        }
+        if (this.sortType === 2) {
+          params.sort = 'ASC'
+        }
+        this.axios({
+          url:'/dream/getDreamData',
+          method:'get',
+          params:param
+        }).then((res)=>{
+          this.$vux.loading.hide()
+          this.wishList = res.data
+        }).catch(()=>{})
       }
+    },
+    mounted () {
+
     }
   }
 </script>
