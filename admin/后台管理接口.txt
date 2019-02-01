@@ -64,7 +64,7 @@ status:true,
 获取角色下用户
 /role/getRoleUserData
 参数
-{id:"",hisUser:false} hisUser true 获取旗下的  false获取不是他下的
+{id:"",hisUser:false,username:"模糊查询"} hisUser true 获取旗下的  false获取不是他下的
 
 添加用户到角色里
 /role/addUserToRole
@@ -78,3 +78,29 @@ status:true,
 获取用户信息
 /user/getUserData
 参数参数 {pageNumber:1,pageSize:10,userName:""}
+
+新增或修改user
+/user/addOrUpdateUser
+参数
+{id:1,isEnable:"Y",username:"",firstName:"",sex:0,password:""}
+
+用户名唯一检查
+/user/checkUsername
+{username:""}
+
+获取用户下的所有角色
+/user/getUserRoleData
+{id:"",hisRole:false,name:"模糊查询"} hisRole true 获取旗下的  false获取不是他下的
+
+删除用户
+/user/deleteUserById
+参数{id:1}
+
+添加角色到用户里
+/user/addRoleoUser
+{roleIds:"多个用逗号分割",id:""}
+
+删除角色从用户里
+/user/deleteRoleFromUser
+{roleIds:"多个用逗号分割",id:""}
+

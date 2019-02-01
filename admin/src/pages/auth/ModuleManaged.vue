@@ -65,7 +65,7 @@ export default {
     	},
     	authData:[],
     	tableQuery:{
-    		parentId:null,
+    		parentId:"",
     	},
     	addOrUpdateForm:formData,
     	addRootView:false,

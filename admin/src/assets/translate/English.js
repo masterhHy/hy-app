@@ -74,7 +74,11 @@ export const En = {
       SAVE_USER_ROLE_FAILED_NOTIFY: 'Save users role failed!',
       PHONE_NUMBER_FORMAT_WARN_NOTIFY: 'Phone number format error',
       THREE_TO_16: 'The length is 3 to 16 characters',
-      SEX_TO_16: 'The length is 6 to 16 characters'
+      SEX_TO_16: 'The length is 6 to 16 characters',
+      REGISTER_SOURCE:"Register source",
+      NICKNAME:"nickname",
+	  ADD_ROLE:"add role",
+	  DEL_ROLE:"delete role"
     },
     role: {
       AUTHORITY_SET: 'Set authority',

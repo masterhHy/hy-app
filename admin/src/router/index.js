@@ -9,6 +9,7 @@ import Welcom from '@/pages/Welcom'
 import ModuleManaged from '@/pages/auth/ModuleManaged'
 import ClientManaged from '@/pages/client/ClientManaged'
 import RoleManaged from '@/pages/role/RoleManaged'
+import UserManaged from '@/pages/user/UserManaged'
 Vue.use(Router)
 
  let router = new Router({
@@ -29,6 +30,10 @@ Vue.use(Router)
       path: '/roleIndex',
       name: 'RoleManaged',
       component: RoleManaged
+    },{
+      path: '/userIndex',
+      name: 'UserManaged',
+      component: UserManaged
     }
   ]
 })

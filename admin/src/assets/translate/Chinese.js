@@ -56,7 +56,7 @@ export const Ch =
         ROLE_LIST: '角色列表',
         AUTH_ROLE: '授权角色',
         RESET_PASSWORD_HINT: '确定重置密码为 000000 ？',
-        DELETE_USER_HINT: '确定删除选中用户？',
+        DELETE_USER_HINT: '确定删除该用户？',
         RESET_PASSWORD_SUCCESS_NOTIFY: '重置密码成功！',
         RESET_PASSWORD_FAILED_NOTIFY: '重置密码失败！',
         MODIFY_PASSWORD_SUCCESS_NOTIFY: '修改密码成功！',
@@ -75,7 +75,11 @@ export const Ch =
         SAVE_USER_ROLE_FAILED_NOTIFY: '保存用户角色失败！',
         PHONE_NUMBER_FORMAT_WARN_NOTIFY: '手机号码格式错误',
         THREE_TO_16: '长度在 3 到 16 个字符',
-        SEX_TO_16: '长度在 6 到 16 个字符'
+        SEX_TO_16: '长度在 6 到 16 个字符',
+        REGISTER_SOURCE:"注册来源",
+        NICKNAME:"昵称",
+        ADD_ROLE:"添加角色",
+        DEL_ROLE:"删除角色"
       },
       role: {
         AUTHORITY_SET: '权限配置',
