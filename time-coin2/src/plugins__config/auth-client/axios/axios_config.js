@@ -32,6 +32,9 @@ export default{
 	      // Do something with response data
 	      return response.data
 	    }, function (error) {
+	    	if(Vue.$vux&&Vue.$vux.loading){
+	    		Vue.$vux.loading.hide()
+	    	}
 	      if (error && error.response) {
 	        switch (error.response.status) {
 	          case 403:
