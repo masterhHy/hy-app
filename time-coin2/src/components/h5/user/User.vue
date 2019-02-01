@@ -2,7 +2,7 @@
   <div class="user">
     <div class="user-head">
       <span class="user-name">{{userName}}</span>
-      <div class="head-img"><img src="@/assets/images/icon.png" class="circle"></div>
+      <div class="head-img"><img :src="headImg" class="circle"></div>
     </div>
     <div>
       <group>
@@ -26,7 +26,7 @@
 
 <script>
   import {Cell, Group,XButton} from 'vux'
-
+  import Constant from '@/plugins__config/auth-client/utils/constant'
   export default {
     name: 'User',
     components: {
@@ -36,8 +36,15 @@
     },
     data() {
       return {
-        userName: '泉眼无声'
+        userName: '',
+        headImg:""
       }
+    },
+    mounted(){
+    	let userInfo=localStorage.getItem(Constant.user_info)||'{}';
+    	userInfo = JSON.parse(userInfo);
+    	this.userName=userInfo.firstName||"";
+    	this.headImg=userInfo.headImg||"http://images.f321.com/7S/Wd/cfAW6K5cd5jFXQQEsJtjYJ2EynMn.png";
     },
     methods:{
     	logout(){
