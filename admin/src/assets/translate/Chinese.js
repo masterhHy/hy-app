@@ -42,6 +42,7 @@ export const Ch =
         PHONE_NUMBER: '手机号码',
         PHONE_NUMBER_PLACEHOLDER: '请输入手机号码',
         PASSWORD: '密码',
+        NEW_PASSWORD: '新密码',
         CHECK_PASSWORD: '确认密码',
         PASSWORD_PLACEHOLDER: '请输入密码',
         PASSWORD_NEW_PLACEHOLDER: '请输入新密码',

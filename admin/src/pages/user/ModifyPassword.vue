@@ -3,7 +3,14 @@
     <el-form ref="modifyPasswordForm" :model="form" label-width="120px" :rules="formRules" >
       <el-row>
         <el-col :span="24">
-          <el-form-item :label="$t('constant.user.PASSWORD')" prop="newPassword">
+          <el-form-item :label="$t('constant.user.PASSWORD')" prop="oldPassword">
+            <el-input v-model="form.oldPassword" :placeholder="$t('constant.user.PASSWORD_PLACEHOLDER')"></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="24">
+          <el-form-item :label="$t('constant.user.NEW_PASSWORD')" prop="newPassword">
             <el-input v-model="form.newPassword" :placeholder="$t('constant.user.PASSWORD_NEW_PLACEHOLDER')"></el-input>
           </el-form-item>
         </el-col>
@@ -49,7 +56,8 @@ export default {
     return {
       form: {
         newPassword: null,
-        checkPassword: null
+        checkPassword: null,
+        oldPassword:null,
       },
       // 表单验证
       formRules: {
@@ -62,6 +70,9 @@ export default {
           { required: true, message: self.$t('constant.user.PASSWORD_AGAIN_PLACEHOLDER'), trigger: 'blur' },
           { min: 6, max: 16, message: self.$t('constant.user.SEX_TO_16'), trigger: 'blur' },
           { validator: validatePass2, trigger: 'blur' }
+        ],
+        oldPassword:[
+        	{required: true, message: self.$t('constant.user.PASSWORD_PLACEHOLDER'), trigger: 'blur' }
         ]
       },
       modifyPasswordShow: false,
@@ -81,23 +92,22 @@ export default {
     },
     modifyPassword () {
       var self = this
+      self.modifyPasswordLoading = true
       // 校验表单
       self.$refs.modifyPasswordForm.validate(result => {
-        self.modifyPasswordLoading = true
+        
         if (result) {
-          self.$http.post(`${DataMainApi}/user/password/${self.form.checkPassword}`, [self.user])
-            .then(res => {
-              if (res.data.code === Status.success) {
-                self.$notify.success(self.$t('constant.user.MODIFY_PASSWORD_SUCCESS_NOTIFY'))
-                self.modifyPasswordShow = false
-              } else {
-                self.$notify.error(self.$t('constant.user.MODIFY_PASSWORD_FAILED_NOTIFY'))
-              }
-              self.modifyPasswordLoading = false
-            })
-            .catch(() => {
-              self.modifyPasswordLoading = false
-            })
+          this.axios.post("/user/modifyPassword",{newPassword:this.form.newPassword,oldPassword:this.form.oldPassword}).then(res=>{
+          	if(res.status){
+          		self.$notify.success(self.$t('constant.user.MODIFY_PASSWORD_SUCCESS_NOTIFY'))
+          		this.modifyPasswordShow=false;
+          	}else{
+          		self.$notify.success(res.message);
+          	}
+          	self.modifyPasswordLoading = false;
+          })
+          
+          
         } else {
           self.modifyPasswordLoading = false
         }

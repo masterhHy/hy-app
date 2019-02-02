@@ -104,3 +104,7 @@ status:true,
 /user/deleteRoleFromUser
 {roleIds:"多个用逗号分割",id:""}
 
+修改密码
+/user/modifyPassword
+参数
+{newPassword:"",oldPassword:""}

@@ -41,6 +41,7 @@ export const En = {
       PHONE_NUMBER: 'Phone',
       PHONE_NUMBER_PLACEHOLDER: 'Enter your phone',
       PASSWORD: 'Password',
+      NEW_PASSWORD:'New Password',
       CHECK_PASSWORD: 'Check password',
       PASSWORD_PLACEHOLDER: 'Enter your password',
       PASSWORD_NEW_PLACEHOLDER: 'Enter your password new',
