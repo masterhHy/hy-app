@@ -2,7 +2,7 @@
   <div class="day-diary">
     <div class="message" v-for="item in timeCoinList">
       <img class="msg-img msg-opacity" src="@/assets/images/jinbi-icon.png"/>
-      <span class="msg-time msg-opacity">{{toTime(item.id)}}</span>
+      <span class="msg-time msg-opacity">{{toTime(item.createTime)}}</span>
       <div class="border-style">
         <p class="msg-p">{{item.content}}</p>
       </div>
@@ -12,7 +12,7 @@
 
 <script>
   import formatUtil from '@/assets/js/formatUtil'
-
+	import moment from 'moment'
   export default {
     name: 'DayDiary',
     data() {
@@ -22,7 +22,19 @@
       }
     },
     methods: {
-      toTime(num) {
+      toTime(time) {
+       	let day = moment(time,"YYYY-MM-DD HH:mm:ss").format("YYYY.MM.DD ");
+       	let h = moment(time,"YYYY-MM-DD HH:mm:ss").format("HH");
+       	let m = moment(time,"YYYY-MM-DD HH:mm:ss").format("m");
+       	if(parseInt(m)<=30){
+       		day += (h+':00' + '~' + h + ':30');
+       	}else{
+       		day += (h+':30' + '~' + h + ':00');
+       	}
+       
+        return day;
+      },
+      /*toTime(num) {
         let time = 8 + parseInt((num - 1) / 2)
         if ((num - 1) % 2 !== 0) {
           time += ':30' + '~' + (time + 1) + ':00'
@@ -30,7 +42,7 @@
           time += ':00' + '~' + time + ':30'
         }
         return formatUtil.dateFormatUtil(this.day) + ' ' + time
-      },
+      },*/
     },
     mounted() {
       this.timeCoinList = this.$route.params.content
@@ -42,6 +54,7 @@
 <style scoped>
   .day-diary {
     width: 100%;
+    padding-bottom: 40px;
   }
 
   .message {

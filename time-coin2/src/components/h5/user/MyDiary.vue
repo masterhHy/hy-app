@@ -20,14 +20,18 @@
       clickDay(data) {
         let today = new Date().getTime()
         let date = new Date(data).getTime()
+        
         if (today > date) {
           //查询当日的日记记录
           //TODO 测试数据
-          let content = [{id:1,type:'2',content:'我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢我在学习呢'}
-            ,{id:2,type:'1',content:'我再工作呢我再工作呢我再工作呢我再工作呢我再工作呢我再工作呢我再工作呢我再工作呢'}
-            ,{id:3,type:'3',content:'我在玩呢我在玩呢我在玩呢我在玩呢我在玩呢我在玩呢我在玩呢我在玩呢我在玩呢'}]
-          //跳转到时间金币页面
-          this.$router.push({name:'dayDiary',params:{content:content,day:date}})
+          this.$vux.loading.show({text: 'Loading'})
+          this.axios.get("/coin/getTodayCoinData",{params:{day:this.$utils.formatDate(data)}}).then(res=>{
+          	this.$vux.loading.hide();
+          	let content =res.data
+          	//跳转到时间金币页面
+          	this.$router.push({name:'dayDiary',params:{content:content,day:date}})
+          })
+          
         }
       },
       changeDate(data) {
