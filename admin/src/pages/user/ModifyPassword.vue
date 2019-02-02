@@ -4,21 +4,21 @@
       <el-row>
         <el-col :span="24">
           <el-form-item :label="$t('constant.user.PASSWORD')" prop="oldPassword">
-            <el-input v-model="form.oldPassword" :placeholder="$t('constant.user.PASSWORD_PLACEHOLDER')"></el-input>
+            <el-input type="password" v-model="form.oldPassword" :placeholder="$t('constant.user.PASSWORD_PLACEHOLDER')"></el-input>
           </el-form-item>
         </el-col>
       </el-row>
       <el-row>
         <el-col :span="24">
           <el-form-item :label="$t('constant.user.NEW_PASSWORD')" prop="newPassword">
-            <el-input v-model="form.newPassword" :placeholder="$t('constant.user.PASSWORD_NEW_PLACEHOLDER')"></el-input>
+            <el-input type="password" v-model="form.newPassword" :placeholder="$t('constant.user.PASSWORD_NEW_PLACEHOLDER')"></el-input>
           </el-form-item>
         </el-col>
       </el-row>
       <el-row>
         <el-col :span="24">
           <el-form-item :label="$t('constant.user.CHECK_PASSWORD')" prop="checkPassword">
-            <el-input v-model="form.checkPassword" :placeholder="$t('constant.user.PASSWORD_AGAIN_PLACEHOLDER')"></el-input>
+            <el-input type="password" v-model="form.checkPassword" :placeholder="$t('constant.user.PASSWORD_AGAIN_PLACEHOLDER')"></el-input>
           </el-form-item>
         </el-col>
       </el-row>
