@@ -25,7 +25,8 @@ export default{
 	 	Vue.axios.defaults.crossDomain = true;
 	    // 配置认证头
 	    Vue.axios.defaults.headers.common['Authorization'] = 'Bearer ' + Vue.prototype.$auth.token();
-	    
+	    // 配置客户端用户唯一标识
+	    Vue.axios.defaults.headers.common['Client-Identify'] = Vue.prototype.$auth.indentify();
 	    
 	    // http 拦截器
 	    Vue.axios.interceptors.response.use(function (response) {
@@ -57,7 +58,6 @@ export default{
 	            	}
 	            	if(Token.token()){
 	            		Token.deleteToken();
-	            		window.location.reload();
 	            	}
 	            	/*if(!window.localStorage.getItem("targetPage")){
 	            		window.localStorage.setItem("targetPage",JSON.stringify(item));
@@ -68,6 +68,12 @@ export default{
 	            	console.error("请在main.js 把vue实例输出，以免后续跳转登录参后回不到原来页面")
 	            }
 	            
+	            break
+	          case 401:
+	          	Vue.prototype.$notify.error("登陆过期");//修改密码
+	          	setTimeout(function(){
+	          		Token.deleteToken();
+	          	},500)
 	            break
 	          default:
 	          	
