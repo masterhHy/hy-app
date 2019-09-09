@@ -271,14 +271,15 @@ export default {
   .z-index2 {
     z-index: 4;
     position: absolute;
-    bottom: -600px;
+    bottom: -120vh;
+    width: 100%;
   }
   .pop-up {
     -webkit-animation: popUp 1s forwards; /* Chrome, Safari, Opera */
     animation: popUp 1s forwards;
   }
   @keyframes popUp {
-    from {bottom: -600px;}
+    from {bottom: -120vh;}
     to {bottom: 0px;}
   }
   .pop-down {
@@ -287,7 +288,7 @@ export default {
   }
   @keyframes popDown {
     from {bottom: 0px;}
-    to {bottom: -600px;}
+    to {bottom: -100vh;}
   }
 
 

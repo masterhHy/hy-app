@@ -46,66 +46,73 @@
   }
 </script>
 
-<style scoped>
-  .message-box {
-    height: 600px;
-    border-bottom: 1px solid red;
-    background-color: white;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    overflow: hidden;
+<style scoped lang="scss">
+  .messages {
+    .message-box {
+      height: 80vh;
+      border-bottom: 1px solid red;
+      background-color: white;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      overflow: hidden;
+    }
+
+    .head-photo {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-top: 10px;
+    }
+
+    .message-right {
+      float: right;
+      width: 80%;
+      p {
+        margin-top: 4px;
+        text-align: left;
+        line-height: 20px;
+      }
+    }
+
+    .message-li {
+      margin: 0 auto;
+      width: 90%;
+      padding-bottom: 15px;
+      overflow: hidden;
+      border-bottom: 1px solid lightgray;
+    }
+    .message-title {
+      text-align: left;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    .single-message-bottom {
+      margin-top: 15px;
+      .good-choose {
+        color: orange;
+      }
+    }
+    .single-message-bottom span:first-of-type {
+      float: left;
+    }
+    .single-message-bottom span:last-of-type {
+      float: right;
+      margin-right: 40px;
+    }
+    .close-icon {
+      float: left;
+      margin-left: 10px;
+    }
+    .message-head {
+      height: 30px;
+      margin-top: 8px;
+      i {
+        font-size: 18px;
+      }
+      span {
+        font-size: 20px;
+      }
+    }
   }
 
-  .head-photo {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-top: 10px;
-  }
-
-  .message-right {
-    float: right;
-    width: 80%;
-  }
-  .message-right p {
-    margin-top: 4px;
-    text-align: left;
-    line-height: 20px;
-  }
-
-  .message-li {
-    margin: 0 auto;
-    width: 90%;
-    height: 120px;
-    border-bottom: 1px solid lightgray;
-  }
-  .message-title {
-    text-align: left;
-    margin-top: 15px;
-    font-weight: bold;
-  }
-  .single-message-bottom {
-    margin-top: 15px;
-  }
-  .single-message-bottom span:first-of-type {
-    float: left;
-  }
-  .single-message-bottom span:last-of-type {
-    float: right;
-    margin-right: 40px;
-  }
-  .close-icon {
-    float: left;
-    margin-left: 10px;
-  }
-  .message-head {
-    height: 30px;
-    margin-top: 8px;
-  }
-  .message-head i {
-    font-size: 18px;
-  }
-  .message-head span {
-    font-size: 20px;
-  }
 </style>
