@@ -9,4 +9,8 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+.custom{
+  background-color: blue;
+  color: blue;
+}
 @import 'common.wxss'

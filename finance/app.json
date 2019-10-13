@@ -9,12 +9,13 @@
     "navigationBarTitleText": "金融分析工具",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTextStyle": "black",
-    "backgroundColor": "#f2f2f2"
+    "backgroundColor": "#f2f2f2",
+    "navigationStyle":"custom"
   },
   "tabBar": {
     "color": "#9a9a9a",
     "selectedColor": "#409eff",
-    "backgroundColor": "#f2f2f2",
+    "backgroundColor": "#fff",
     "borderStyle": "white",
     "list": [
       {
@@ -30,5 +31,6 @@
         "selectedIconPath": "img/tabBar/people_fill.png"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }
